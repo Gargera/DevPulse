@@ -1,0 +1,28 @@
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+
+    <thead style="background-color: #f3f4f6;">
+        <tr>
+            <td style="padding: 12px; font-weight: bold; border: 1px solid #ddd;">
+                Title
+            </td>
+
+            <td style="padding: 12px; font-weight: bold; border: 1px solid #ddd;">
+                Description
+            </td>
+        </tr>
+    </thead>
+
+    @for(item of arr; track $index)
+    {
+        <tr>
+            <td style="padding: 12px; border: 1px solid #ddd;">
+                {{item.Title}}
+            </td>
+
+            <td style="padding: 12px; border: 1px solid #ddd;">
+                {{item.Description}}
+            </td>
+        </tr>
+    }
+
+</table>

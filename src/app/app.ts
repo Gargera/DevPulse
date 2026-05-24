@@ -1,12 +1,23 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Nav } from "../Components/nav/nav";
+import { Footer } from "../Components/footer/footer";
+import { HomeLayout } from "../Components/home-layout/home-layout";
+import { Register } from "../TestComponents/register/register";
+import { Login } from "../TestComponents/login/login";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Nav, Footer, HomeLayout, Register, Login],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('TechNews');
+  protected readonly title = signal('DevPulse');
+
+  arr: {Title: string, Description: string}[] = [];
+  
+  RegisterEventHandler(obj: any)
+  {
+     this.arr.push(obj);
+  }
 }

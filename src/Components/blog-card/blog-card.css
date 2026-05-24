@@ -1,0 +1,28 @@
+.blog-card {
+    border: 1px solid #d4b8f5;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    background: #faf5ff;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: pointer;
+}
+
+.blog-card:hover {
+    border-color: #a855f7;
+    background: #f3eaff;
+}
+
+.blog-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4c1d95;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.blog-card p {
+    font-size: 13px;
+    color: #7c3aed;
+    line-height: 1.6;
+}

@@ -1,0 +1,30 @@
+<div class="create-form">
+  <div class="form-header">
+    <div class="form-icon">✏️</div>
+    <h2>Create New Blog</h2>
+  </div>
+
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" placeholder="Enter blog title" [(ngModel)]="Title" />
+    <span class="error-message">{{TitleValid.Message}}</span>
+  </div>
+
+  <div class="form-group">
+    <label>Description</label>
+    <textarea placeholder="Write your blog description..." [(ngModel)]="Description"></textarea>
+    <span class="error-message">{{DescriptionValid.Message}}</span>
+  </div>
+
+  <input type="hidden" />
+  <div class="form-group">
+    <label>Image <span style="color:#b491d4; font-weight:400;">(Optional)</span></label>
+    <div class="upload-box">
+      <div class="upload-icon">☁️</div>
+      <p>Choose a file or drag and drop</p>
+      <span>JPG, PNG or WEBP (max. 5MB)</span>
+    </div>
+  </div>
+
+  <button class="btn-publish" (click)="createBlog()">🚀 Publish Blog</button>
+</div>

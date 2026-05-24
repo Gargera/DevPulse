@@ -1,0 +1,11 @@
+<div class="blog-list">
+  <h2>Latest Blogs</h2>
+  <p class="subtitle">Stay updated with the latest tech news and articles.</p>
+
+  @for(item of Blogs; track item.Id)
+  {
+      <app-blog-card [BlogData]="item"></app-blog-card>
+  }
+
+  <button class="load-more">Load More</button>
+</div>
