@@ -8,15 +8,17 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './register.css',
 })
 export class Register {
-  Title: string = "";
-  Description: string = "";
+  Name: string = "";
+  Email: string = "";
 
   @Output() RegisterEvent = new EventEmitter();
 
   registerBtn()
   {
-    let obj: {Title: string, Description: string} = {Title: this.Title, Description: this.Description};
+    let obj: {Name: string, Email: string} = {Name: this.Name, Email: this.Email};
 
     this.RegisterEvent.emit(obj);
+    this.Name = "";
+    this.Email = "";
   }
 }

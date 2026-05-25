@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './login.css',
 })
 export class Login {
-  @Input() arr: {Title: string, Description: string}[] = [];
+  @Input() arr: {Name: string, Email: string}[] = [];
 
   
 }

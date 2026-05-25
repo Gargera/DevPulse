@@ -14,7 +14,7 @@ import { Login } from "../TestComponents/login/login";
 export class App {
   protected readonly title = signal('DevPulse');
 
-  arr: {Title: string, Description: string}[] = [];
+  arr: {Name: string, Email: string}[] = [];
   
   RegisterEventHandler(obj: any)
   {

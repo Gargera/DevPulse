@@ -53,7 +53,10 @@ export class CreateBlog {
 
     if(this.IsBlogValid)
     {
-      let BlogData: IBlogData = {Id:this.Id, ImageUrl:this.ImageUrl, Title: this.Title, Description: this.Description};
+      let BlogData: IBlogData = {Id:this.Id, 
+                                 ImageUrl:this.ImageUrl, 
+                                 Title: this.Title, 
+                                 Description: this.Description};
       
       this.CreateBlogEvent.emit(BlogData);
 

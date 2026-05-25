@@ -3,19 +3,19 @@
   <div style="display: flex; flex-direction: column; gap: 6px;">
     
     <label style="font-weight: 600;">
-      Title
+      Name
     </label>
 
-    <input type="text" placeholder="Enter title" [(ngModel)]="Title" style="padding: 10px;border: 1px solid #d1d5db;border-radius: 8px;outline: none;"/>
+    <input type="text" placeholder="Enter Your Name" [(ngModel)]="Name" style="padding: 10px;border: 1px solid #d1d5db;border-radius: 8px;outline: none;"/>
   </div>
 
   <div style="display: flex; flex-direction: column; gap: 6px;">
 
     <label style="font-weight: 600;">
-      Description
+      Email
     </label>
 
-    <textarea placeholder="Write your description..." [(ngModel)]="Description" style="padding: 10px;border: 1px solid #d1d5db;border-radius: 8px;min-height: 120px;resize: vertical;outline: none;"></textarea>
+    <textarea placeholder="Write your Email" [(ngModel)]="Email" style="padding: 10px;border: 1px solid #d1d5db;border-radius: 8px;min-height: 120px;resize: vertical;outline: none;"></textarea>
   </div>
 
   <button (click)="registerBtn()" style="padding: 12px; border: none;border-radius: 8px;background-color: #2563eb;color: white;font-weight: bold;cursor: pointer;">
