@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CreateBlog } from "../create-blog/create-blog";
 import { LatestBlogs } from "../latest-blogs/latest-blogs";
-import { IBlogData } from '../../Models/IBlogData';
+import { Blog } from '../../Models/Blog';
 
 @Component({
   selector: 'app-home-layout',
@@ -10,9 +10,9 @@ import { IBlogData } from '../../Models/IBlogData';
   styleUrl: './home-layout.css',
 })
 export class HomeLayout {
-   Blogs: IBlogData[] = [];
+   Blogs: Blog[] = [];
 
-   CreateBlogEventHandler(Blog: IBlogData)
+   CreateBlogEventHandler(Blog: Blog)
    {
       this.Blogs.push(Blog);
    }

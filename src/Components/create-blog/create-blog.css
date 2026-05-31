@@ -104,6 +104,28 @@
   color: #b491d4;
 }
 
+.image-preview {
+  width: 100%;
+  max-height: 250px;
+  margin-top: 12px;
+
+  object-fit: cover;
+
+  border-radius: 10px;
+  border: 1px solid #d4b8f5;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 13px;
+  color: #4c1d95;
+  background: #fff;
+  border: 1.5px solid #d4b8f5;
+  border-radius: 8px;
+  outline: none;
+}
+
 .btn-publish {
   width: 100%;
   padding: 10px;

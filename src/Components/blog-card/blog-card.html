@@ -1,5 +1,19 @@
 <div class="blog-card">
-    <img [src] = "BlogData.ImageUrl">
-    <h3>{{ BlogData.Title }}</h3>
-    <p>{{ BlogData.Description }}</p>
+  <div class="blog-image-wrap">
+    @if(BlogData.ImageUrl) {
+      <img [src]="BlogData.ImageUrl" [alt]="BlogData.Title">
+    }
+    <span class="category-badge">{{ BlogData.Category }}</span>
+  </div>
+
+  <div class="blog-body">
+    <h3 class="blog-title">{{ BlogData.Title }}</h3>
+    <p class="blog-desc">{{ BlogData.Description }}</p>
+  </div>
+
+  <div class="blog-footer">
+    <button class="btn-read-more" (click)="goToDetails()">
+      Read more 
+    </button>
+  </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, Input} from '@angular/core';
-import { IBlogData } from '../../Models/IBlogData';
+import { Blog } from '../../Models/Blog';
 
 @Component({
   selector: 'app-blog-card',
@@ -8,5 +8,10 @@ import { IBlogData } from '../../Models/IBlogData';
   styleUrl: './blog-card.css',
 })
 export class BlogCard {
-  @Input() BlogData: IBlogData = {Id:0, ImageUrl:"", Title: "", Description: ""};
+  @Input() BlogData: Blog = {Id:0, ImageUrl:"", Title: "", Description: "", Category: ""};
+
+  goToDetails()
+  {
+    
+  }
 }

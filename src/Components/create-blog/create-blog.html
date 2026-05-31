@@ -16,15 +16,41 @@
     <span class="error-message">{{DescriptionValid.Message}}</span>
   </div>
 
-  <input type="hidden" />
   <div class="form-group">
-    <label>Image <span style="color:#b491d4; font-weight:400;">(Optional)</span></label>
-    <div class="upload-box">
-      <div class="upload-icon">☁️</div>
-      <p>Choose a file or drag and drop</p>
-      <span>JPG, PNG or WEBP (max. 5MB)</span>
-    </div>
+  <label> Image <span style="color:#b491d4; font-weight:400;">(Optional)</span></label>
+  <div class="upload-box" (click)="imageInput.click()">
+    <input #imageInput type="file" accept=".jpg,.jpeg,.png,.webp" hidden (change)="onImageSelected($event)"/>
+    <div class="upload-icon">☁️</div>
+    <p> {{ selectedFileName || 'Choose a file' }} </p>
+    <span> JPG, PNG or WEBP (max. 5MB) </span>
   </div>
+
+  @if(imageError)
+  {
+  <span class="error-message"> {{ imageError }} </span>
+  }
+
+  @if(imagePreview)
+  {
+    <img [src]="imagePreview" class="image-preview" alt="Preview" />
+  }
+</div>
+
+<div class="form-group">
+  <label>Category</label>
+
+  <select [(ngModel)]="selectedCategory">
+    <option value="">Select Category</option>
+
+    @for(category of categories; track category.Id)
+    {
+      <option [value]="category.Name">
+        {{category.Name}}
+      </option>
+    }
+  </select>
+  <span class="error-message"> {{ categoryValid.Message }} </span>
+</div>
 
   <button class="btn-publish" (click)="createBlog()">🚀 Publish Blog</button>
 </div>

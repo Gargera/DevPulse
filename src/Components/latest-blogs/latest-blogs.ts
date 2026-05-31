@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { BlogCard } from '../blog-card/blog-card';
-import { IBlogData } from '../../Models/IBlogData';
+import { Blog } from '../../Models/Blog';
 
 @Component({
   selector: 'app-latest-blogs',
@@ -9,5 +9,5 @@ import { IBlogData } from '../../Models/IBlogData';
   styleUrl: './latest-blogs.css',
 })
 export class LatestBlogs {
-    @Input() Blogs: IBlogData[] = [];
+    @Input() Blogs: Blog[] = [];
 }
