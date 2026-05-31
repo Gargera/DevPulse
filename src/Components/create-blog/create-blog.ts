@@ -20,11 +20,11 @@ export class CreateBlog implements OnInit {
   blogForm: FormGroup;
 
   categories: Category[] = [
-    { Id: 1, Name: "AI" },
-    { Id: 2, Name: "Mobile Development" },
-    { Id: 3, Name: "Programming" },
-    { Id: 4, Name: "Web Development" }
-  ];
+                              { Id: 1, Name: "AI" },
+                              { Id: 2, Name: "Mobile Development" },
+                              { Id: 3, Name: "Programming" },
+                              { Id: 4, Name: "Web Development" }
+                            ];
 
   @Output() CreateBlogEvent = new EventEmitter();
 
