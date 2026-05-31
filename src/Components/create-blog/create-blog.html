@@ -1,4 +1,4 @@
-<div class="create-form">
+<div class="create-form" [formGroup]="blogForm">
   <div class="form-header">
     <div class="form-icon">✏️</div>
     <h2>Create New Blog</h2>
@@ -6,51 +6,42 @@
 
   <div class="form-group">
     <label>Title</label>
-    <input type="text" placeholder="Enter blog title" [(ngModel)]="Title" />
+    <input type="text" placeholder="Enter blog title" formControlName="Title" />
     <span class="error-message">{{TitleValid.Message}}</span>
   </div>
 
   <div class="form-group">
     <label>Description</label>
-    <textarea placeholder="Write your blog description..." [(ngModel)]="Description"></textarea>
+    <textarea placeholder="Write your blog description..." formControlName="Description"></textarea>
     <span class="error-message">{{DescriptionValid.Message}}</span>
   </div>
 
   <div class="form-group">
-  <label> Image <span style="color:#b491d4; font-weight:400;">(Optional)</span></label>
-  <div class="upload-box" (click)="imageInput.click()">
-    <input #imageInput type="file" accept=".jpg,.jpeg,.png,.webp" hidden (change)="onImageSelected($event)"/>
-    <div class="upload-icon">☁️</div>
-    <p> {{ selectedFileName || 'Choose a file' }} </p>
-    <span> JPG, PNG or WEBP (max. 5MB) </span>
+    <label>Image <span style="color:#b491d4; font-weight:400;">(Optional)</span></label>
+    <div class="upload-box" (click)="imageInput.click()">
+      <input #imageInput type="file" accept=".jpg,.jpeg,.png,.webp" hidden (change)="onImageSelected($event)" />
+      <div class="upload-icon">☁️</div>
+      <p>{{ selectedFileName || 'Choose a file' }}</p>
+      <span>JPG, PNG or WEBP (max. 5MB)</span>
+    </div>
+    @if(imageError) {
+      <span class="error-message">{{ imageError }}</span>
+    }
+    @if(imagePreview) {
+      <img [src]="imagePreview" class="image-preview" alt="Preview" />
+    }
   </div>
 
-  @if(imageError)
-  {
-  <span class="error-message"> {{ imageError }} </span>
-  }
-
-  @if(imagePreview)
-  {
-    <img [src]="imagePreview" class="image-preview" alt="Preview" />
-  }
-</div>
-
-<div class="form-group">
-  <label>Category</label>
-
-  <select [(ngModel)]="selectedCategory">
-    <option value="">Select Category</option>
-
-    @for(category of categories; track category.Id)
-    {
-      <option [value]="category.Name">
-        {{category.Name}}
-      </option>
-    }
-  </select>
-  <span class="error-message"> {{ categoryValid.Message }} </span>
-</div>
+  <div class="form-group">
+    <label>Category</label>
+    <select formControlName="Category">
+      <option value="">Select Category</option>
+      @for(cat of categories; track cat.Id) {
+        <option [value]="cat.Name">{{ cat.Name }}</option>
+      }
+    </select>
+    <span class="error-message">{{categoryValid.Message}}</span>
+  </div>
 
   <button class="btn-publish" (click)="createBlog()">🚀 Publish Blog</button>
 </div>
