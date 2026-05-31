@@ -10,10 +10,10 @@ import { Blog } from '../../Models/Blog';
   styleUrl: './home-layout.css',
 })
 export class HomeLayout {
-   Blogs: Blog[] = [];
+   BlogData: Blog = {Id: 0, ImageUrl: null, Title: "", Description: "", Category: ""};
 
    CreateBlogEventHandler(Blog: Blog)
    {
-      this.Blogs.push(Blog);
+      this.BlogData = Blog;
    }
 }

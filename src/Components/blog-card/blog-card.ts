@@ -12,6 +12,6 @@ export class BlogCard {
 
   goToDetails()
   {
-    
+    //blog details component
   }
 }

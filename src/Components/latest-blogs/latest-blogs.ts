@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { BlogCard } from '../blog-card/blog-card';
 import { Blog } from '../../Models/Blog';
 
@@ -8,6 +8,16 @@ import { Blog } from '../../Models/Blog';
   templateUrl: './latest-blogs.html',
   styleUrl: './latest-blogs.css',
 })
-export class LatestBlogs {
-    @Input() Blogs: Blog[] = [];
+export class LatestBlogs implements OnChanges, OnInit{
+  Blogs: Blog[] = [];
+  @Input() parentBlogData: Blog = {Id: 0, ImageUrl: null, Title: "", Description: "", Category: ""};
+
+  ngOnInit(): void {
+    //this.Blogs = call api 
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(!changes["parentBlogData"].firstChange) 
+       this.Blogs.push(this.parentBlogData);
+  }
 }

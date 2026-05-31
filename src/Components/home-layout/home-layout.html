@@ -1,4 +1,4 @@
 <div class="main-grid">
-   <app-latest-blogs [Blogs] = "Blogs"></app-latest-blogs>
+   <app-latest-blogs [parentBlogData] = "BlogData"></app-latest-blogs>
    <app-create-blog (CreateBlogEvent) = "CreateBlogEventHandler($event)"></app-create-blog>
 </div>
