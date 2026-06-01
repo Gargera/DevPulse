@@ -2,6 +2,6 @@ export interface Blog {
     Id:number, 
     ImageUrl:string | null, 
     Title: string, 
-    Description: string
+    Content: string,
     Category: string
 }

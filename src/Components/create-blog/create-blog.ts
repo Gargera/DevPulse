@@ -31,7 +31,7 @@ export class CreateBlog implements OnInit {
   constructor(private fb: FormBuilder) {
     this.blogForm = this.fb.group({
       Title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
-      Description: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(10000)]],
+      Content: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(10000)]],
       Category: ['', Validators.required]
     });
   }
@@ -107,19 +107,19 @@ export class CreateBlog implements OnInit {
     return response
   }
 
-  get DescriptionValid() :  IValidationResponse
+  get ContentValid() :  IValidationResponse
   {
     let response: IValidationResponse = {Success: false, Message: ""};
-    let description = this.blogForm.get('Description');
+    let content = this.blogForm.get('Content');
 
-    if(!description?.touched) return response;
+    if(!content?.touched) return response;
 
-    if(description.errors?.['required']) 
-      response.Message = "Description is required.";
-    else if(description.errors?.['minlength'])
-      response.Message = `Description must be at least ${description.errors?.['minlength']?.requiredLength} characters.`;
-    else if(description.errors?.['maxlength'])
-      response.Message = `Description can't be more than ${description.errors?.['maxlength']?.requiredLength} characters.`;
+    if(content.errors?.['required']) 
+      response.Message = "Content is required.";
+    else if(content.errors?.['minlength'])
+      response.Message = `Content must be at least ${content.errors?.['minlength']?.requiredLength} characters.`;
+    else if(content.errors?.['maxlength'])
+      response.Message = `Content can't be more than ${content.errors?.['maxlength']?.requiredLength} characters.`;
     else 
       response.Success = true;
 
@@ -143,7 +143,7 @@ export class CreateBlog implements OnInit {
 
   get IsBlogValid(){
      if(this.TitleValid.Success && 
-        this.DescriptionValid.Success && 
+        this.ContentValid.Success && 
         this.categoryValid.Success) return true;
      else return false;
   }
@@ -156,7 +156,7 @@ export class CreateBlog implements OnInit {
                                 Id: this.Id,
                                 ImageUrl: this.imagePreview,
                                 Title: this.blogForm.value.Title,
-                                Description: this.blogForm.value.Description,
+                                Content: this.blogForm.value.Content,
                                 Category: this.blogForm.value.Category
                               };
 
