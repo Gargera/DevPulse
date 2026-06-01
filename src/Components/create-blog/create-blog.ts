@@ -30,8 +30,8 @@ export class CreateBlog implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.blogForm = this.fb.group({
-      Title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      Description: ['', [Validators.required, Validators.minLength(50), Validators.maxLength(1000)]],
+      Title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
+      Description: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(10000)]],
       Category: ['', Validators.required]
     });
   }
@@ -98,9 +98,9 @@ export class CreateBlog implements OnInit {
     if(title.errors?.['required']) 
       response.Message = "Title is required.";
     else if(title.errors?.['minlength'])
-      response.Message = "Title must be at least 3 characters.";
+      response.Message = `Title must be at least ${title.errors?.['minlength']?.requiredLength} characters.`;
     else if(title.errors?.['maxlength'])
-      response.Message = "Title can't be more than 50 characters.";
+      response.Message = `Title can't be more than ${title.errors?.['maxlength']?.requiredLength} characters.`;
     else 
       response.Success = true;
 
@@ -117,9 +117,9 @@ export class CreateBlog implements OnInit {
     if(description.errors?.['required']) 
       response.Message = "Description is required.";
     else if(description.errors?.['minlength'])
-      response.Message = "Description must be at least 50 characters.";
+      response.Message = `Description must be at least ${description.errors?.['minlength']?.requiredLength} characters.`;
     else if(description.errors?.['maxlength'])
-      response.Message = "Description can't be more than 1000 characters.";
+      response.Message = `Description can't be more than ${description.errors?.['maxlength']?.requiredLength} characters.`;
     else 
       response.Success = true;
 
