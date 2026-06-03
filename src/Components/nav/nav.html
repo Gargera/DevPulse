@@ -2,9 +2,9 @@
     <a routerLink="/home" class="nav-logo">Dev<span>Pulse</span></a>
 
     <ul class="nav-links">
-        <li><a routerLink="/home">Home</a></li>
-        <li><a routerLink="/about">About</a></li>
-        <li><a routerLink="/blogs">Blogs</a></li>
+        <li><a class="active" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+        <li><a class="active" routerLink="/about" routerLinkActive="active">About</a></li>
+        <li><a class="active" routerLink="/blogs" routerLinkActive="active">Blogs</a></li>
     </ul>
 
     <div class="nav-actions">

@@ -104,3 +104,12 @@ nav {
     background: #7c3aed;
     border-color: #7c3aed;
 }
+
+.nav-links a.active {
+    color: #7c3aed;
+    width: 100%;
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
