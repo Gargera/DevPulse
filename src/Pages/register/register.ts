@@ -167,7 +167,8 @@ export class Register {
     return response;
   }
 
-  onSubmit() {
+  onSubmit() 
+  {
     this.registerForm.markAllAsTouched();
 
     if (this.registerForm.valid) {
