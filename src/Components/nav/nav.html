@@ -1,15 +1,14 @@
 <nav>
-    <a href="#" class="nav-logo">Dev<span>Pulse</span></a>
+    <a routerLink="/home" class="nav-logo">Dev<span>Pulse</span></a>
 
     <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Blogs</a></li>
+        <li><a routerLink="/home">Home</a></li>
+        <li><a routerLink="/about">About</a></li>
+        <li><a routerLink="/blogs">Blogs</a></li>
     </ul>
 
     <div class="nav-actions">
-        <a href="#" class="btn-signin">Sign In</a>
-        <a href="#" class="btn-signup">Sign Up</a>
+        <a routerLink="/auth/login" class="btn-signin">Sign In</a>
+        <a routerLink="/auth/register" class="btn-signup">Sign Up</a>
     </div>
 </nav>

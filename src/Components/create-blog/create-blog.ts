@@ -100,7 +100,7 @@ export class CreateBlog implements OnInit {
     else if(title.errors?.['minlength'])
       response.Message = `Title must be at least ${title.errors?.['minlength']?.requiredLength} characters.`;
     else if(title.errors?.['maxlength'])
-      response.Message = `Title can't be more than ${title.errors?.['maxlength']?.requiredLength} characters.`;
+      response.Message = `Title cannot exceed ${title.errors?.['maxlength']?.requiredLength} characters.`;
     else 
       response.Success = true;
 
@@ -119,7 +119,7 @@ export class CreateBlog implements OnInit {
     else if(content.errors?.['minlength'])
       response.Message = `Content must be at least ${content.errors?.['minlength']?.requiredLength} characters.`;
     else if(content.errors?.['maxlength'])
-      response.Message = `Content can't be more than ${content.errors?.['maxlength']?.requiredLength} characters.`;
+      response.Message = `Content cannot exceed ${content.errors?.['maxlength']?.requiredLength} characters.`;
     else 
       response.Success = true;
 
@@ -139,13 +139,6 @@ export class CreateBlog implements OnInit {
       response.Success = true;
 
     return response;
-}
-
-  get IsBlogValid(){
-     if(this.TitleValid.Success && 
-        this.ContentValid.Success && 
-        this.categoryValid.Success) return true;
-     else return false;
   }
 
   createBlog() {
