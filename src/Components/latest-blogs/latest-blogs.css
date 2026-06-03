@@ -7,25 +7,6 @@
 
 .blog-list .subtitle {
     font-size: 13px;
-    color: #9333ea;
+    color: #f3e8ff;
     margin-bottom: 20px;
-}
-
-.load-more {
-    display: block;
-    width: 100%;
-    margin-top: 4px;
-    padding: 9px;
-    font-size: 13px;
-    font-weight: 500;
-    color: #7c3aed;
-    background: transparent;
-    border: 1.5px solid #c084fc;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.load-more:hover {
-    background: #e9d5ff;
 }
