@@ -8,6 +8,7 @@ import { Users } from '../Pages/users/users';
 import { Login } from '../Pages/login/login';
 import { Register } from '../Pages/register/register';
 import { AuthLayout } from '../Pages/auth-layout/auth-layout';
+import { Blogs } from '../Pages/blogs/blogs';
 
 export const routes: Routes = [
     {path: '', component: MainLayout, children: [
@@ -15,7 +16,8 @@ export const routes: Routes = [
         {path: 'home', component: Home, title: 'Home'},
         {path: 'about', component: About, title: 'About'},
         {path: 'profile', component: Profile, title: 'Profile'},
-        {path: 'users', component: Users, title: 'Users'}
+        {path: 'users', component: Users, title: 'Users'},
+        {path: 'blogs', component: Blogs, title: 'Blogs'},
     ]},
     {path: 'auth', component: AuthLayout, children: [
         {path: 'login', component: Login, title: 'Login'},
