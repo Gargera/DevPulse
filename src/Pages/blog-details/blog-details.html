@@ -1,0 +1,42 @@
+<div class="details-page">
+
+  <div class="back-bar">
+    <button class="btn-back" (click)="goBack()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Go Back
+    </button>
+  </div>
+
+  @if(blog) {
+
+    <article class="details-card">
+
+      <div class="details-meta">
+        <span class="category-badge">{{ blog.CategoryName }}</span>
+      </div>
+
+      <h1 class="details-title">{{ blog.Title }}</h1>
+
+      @if(blog.ImageUrl) {
+        <div class="details-image-wrap">
+          <img [src]="blog.ImageUrl" [alt]="blog.Title" class="details-image" />
+        </div>
+      }
+
+      <div class="details-content">
+        <p>{{ blog.Content }}</p>
+      </div>
+
+    </article>
+
+  } 
+  @else {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading article...</p>
+    </div>
+  }
+
+</div>
