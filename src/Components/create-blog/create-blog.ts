@@ -150,7 +150,7 @@ export class CreateBlog implements OnInit {
                                 ImageUrl: this.imagePreview,
                                 Title: this.blogForm.value.Title,
                                 Content: this.blogForm.value.Content,
-                                Category: this.blogForm.value.Category
+                                CategoryName: this.blogForm.value.Category
                               };
 
       this.CreateBlogEvent.emit(BlogData);

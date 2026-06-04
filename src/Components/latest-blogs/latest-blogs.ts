@@ -10,7 +10,7 @@ import { Blog } from '../../Models/Blog';
 })
 export class LatestBlogs implements OnChanges, OnInit{
   Blogs: Blog[] = [];
-  @Input() parentBlogData: Blog = {Id: 0, ImageUrl: null, Title: "", Content: "", Category: ""};
+  @Input() parentBlogData: Blog = {Id: 0, ImageUrl: null, Title: "", Content: "", CategoryName: ""};
 
   ngOnInit(): void {
     //this.Blogs = call api 

@@ -4,5 +4,5 @@ export interface Blog
     ImageUrl:string | null, 
     Title: string, 
     Content: string,
-    Category: string
+    CategoryName: string
 }

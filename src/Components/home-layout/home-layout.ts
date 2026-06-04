@@ -10,7 +10,7 @@ import { Blog } from '../../Models/Blog';
   styleUrl: './home-layout.css',
 })
 export class HomeLayout {
-   BlogData: Blog = {Id: 0, ImageUrl: null, Title: "", Content: "", Category: ""};
+   BlogData: Blog = {Id: 0, ImageUrl: null, Title: "", Content: "", CategoryName: ""};
 
    CreateBlogEventHandler(Blog: Blog)
    {

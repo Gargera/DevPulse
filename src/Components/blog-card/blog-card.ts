@@ -8,7 +8,7 @@ import { Blog } from '../../Models/Blog';
   styleUrl: './blog-card.css',
 })
 export class BlogCard {
-  @Input() BlogData: Blog = {Id:0, ImageUrl:"", Title: "", Content: "", Category: ""};
+  @Input() BlogData: Blog = {Id:0, ImageUrl:"", Title: "", Content: "", CategoryName: ""};
 
   goToDetails()
   {
