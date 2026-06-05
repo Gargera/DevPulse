@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HomeLayout } from "../../app/Components/home-layout/home-layout";
+import { HomeLayout } from "../../../Components/home-layout/home-layout";
 
 @Component({
   selector: 'app-home',

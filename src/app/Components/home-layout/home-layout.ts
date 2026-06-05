@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CreateBlog } from "../create-blog/create-blog";
 import { LatestBlogs } from "../latest-blogs/latest-blogs";
-import { Blog } from '../../Models/Blog/Blog';
+import { Blog } from '../../Core/Models/Blog/Blog';
 
 @Component({
   selector: 'app-home-layout',

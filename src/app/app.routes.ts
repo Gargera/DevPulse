@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router';
-import { Home } from '../Pages/home/home';
-import { About } from '../Pages/about/about';
-import { MainLayout } from '../Pages/main-layout/main-layout';
-import { NotFound } from '../Pages/not-found/not-found';
-import { Profile } from '../Pages/profile/profile';
-import { Users } from '../Pages/users/users';
-import { Login } from '../Pages/login/login';
-import { Register } from '../Pages/register/register';
-import { AuthLayout } from '../Pages/auth-layout/auth-layout';
-import { Blogs } from '../Pages/blogs/blogs';
-import { BlogDetails } from '../Pages/blog-details/blog-details';
+import { Home } from './Pages/main-layout/home/home';
+import { About } from './Pages/main-layout/about/about';
+import { MainLayout } from './Pages/main-layout/main-layout.component/main-layout';
+import { NotFound } from './Pages/not-found/not-found';
+import { Profile } from './Pages/profile-layout/profile-layout.component/profile';
+import { Users } from './Pages/dashboard-layout/users/users';
+import { Login } from './Pages/auth-layout/login/login';
+import { Register } from './Pages/auth-layout/register/register';
+import { AuthLayout } from './Pages/auth-layout/auth-layout.component/auth-layout';
+import { Blogs } from './Pages/main-layout/blogs/blogs';
+import { BlogDetails } from './Pages/main-layout/blog-details/blog-details';
 
 export const routes: Routes = [
     {path: '', component: MainLayout, children: [

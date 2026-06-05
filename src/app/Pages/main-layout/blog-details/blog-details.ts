@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Blog } from '../../app/Models/Blog/Blog';
+import { Blog } from '../../../Core/Models/Blog/Blog';
 import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 
