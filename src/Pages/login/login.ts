@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { IValidationResponse } from '../../Models/IValidationResponse';
-import { UserLogIn } from '../../Models/UserLogIn';
+import { IValidationResponse } from '../../app/Models/IValidationResponse';
+import { UserLogIn } from '../../app/Models/UserLogIn';
 
 @Component({
   selector: 'app-login',

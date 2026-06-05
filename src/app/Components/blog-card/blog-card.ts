@@ -1,5 +1,6 @@
 import { Component, Input} from '@angular/core';
 import { Blog } from '../../Models/Blog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blog-card',
@@ -10,8 +11,13 @@ import { Blog } from '../../Models/Blog';
 export class BlogCard {
   @Input() BlogData: Blog = {Id:0, ImageUrl:"", Title: "", Content: "", CategoryName: ""};
 
+  constructor(private router: Router)
+  {
+
+  }
+
   goToDetails()
   {
-    //blog details component
+    this.router.navigate(['/blogs', this.BlogData.Id]);
   }
 }

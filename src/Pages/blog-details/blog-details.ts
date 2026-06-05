@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Blog } from '../../Models/Blog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Blog } from '../../app/Models/Blog';
+import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 export class BlogDetails implements OnInit {
   blog: Blog | null = null;
 
-  constructor(private router: Router, private location: Location, private route: ActivatedRoute)
+  constructor(private location: Location, private route: ActivatedRoute)
   {
 
   }
