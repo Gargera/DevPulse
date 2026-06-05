@@ -13,6 +13,7 @@ import { DashboardLayoutComponent } from './Pages/dashboard-layout/dashboard-lay
 import { AllBlogs } from './Pages/dashboard-layout/all-blogs/all-blogs';
 import { MyBlogs } from './Components/my-blogs/my-blogs';
 import { Categories } from './Pages/dashboard-layout/categories/categories';
+import { ProfileLayout } from './Pages/main-layout/profile-layout/profile-layout';
 
 export const routes: Routes = [
     {path: '', component: MainLayoutComponent, children: [
@@ -20,6 +21,7 @@ export const routes: Routes = [
         {path: 'home', component: Home, title: 'DevPulse - Home'},
         {path: 'about', component: About, title: 'DevPulse - About'},
         {path: 'blogs', component: Blogs, title: 'DevPulse - Blogs'},
+        {path: 'profile', component: ProfileLayout, title: 'DevPulse - Profile'},
         {path: 'blogs/:id', component: BlogDetails, title: "DevPulse - BlogDetails"}
     ]},
     {path: 'admin', component: DashboardLayoutComponent, title: 'DevPulse - Dashboard', children: [
