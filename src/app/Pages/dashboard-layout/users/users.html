@@ -1,0 +1,75 @@
+<div class="admin-page-container">
+  
+  <div class="page-header">
+    <div class="header-text">
+      <h2>User Access Management</h2>
+      <p>View registered accounts and manage role authorizations for DevPulse platform.</p>
+    </div>
+  </div>
+
+  @if (isLoading) {
+    <div class="spinner-container">
+      <div class="custom-spinner"></div>
+      <p>Loading user directory...</p>
+    </div>
+  } @else {
+
+    <div class="table-responsive glass-card no-padding">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Username</th>
+            <th>Email Address</th>
+            <th>Role Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of users; track user.Id) {
+            <tr>
+              <td class="user-fullname">
+                {{ user.FirstName }} {{ user.LastName }}
+              </td>
+              
+              <td class="user-name">&#64;{{ user.UserName }}</td>
+              
+              <td class="user-email">{{ user.Email }}</td>
+              
+              <td>
+                @if (hasAdminRole(user.Roles)) {
+                  <span class="badge badge-admin">
+                    <i class="bi bi-shield-lock-fill"></i> Admin
+                  </span>
+                } @else {
+                  <span class="badge badge-user">
+                    <i class="bi bi-person-fill"></i> User
+                  </span>
+                }
+              </td>
+              
+              <td>
+                <div class="action-buttons">
+                  @if (!hasAdminRole(user.Roles)) {
+                    <button class="btn-action btn-promote" (click)="makeAdmin(user.Id)">
+                      <i class="bi bi-arrow-up-circle-fill"></i> Make Admin
+                    </button>
+                  } @else {
+                    <span class="text-disabled">No actions available</span>
+                  }
+                </div>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5" class="empty-row">
+                <p>No registered users found in the system.</p>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+  }
+</div>
