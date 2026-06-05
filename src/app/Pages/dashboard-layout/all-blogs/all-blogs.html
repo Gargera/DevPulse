@@ -1,0 +1,72 @@
+<div class="admin-page-container">
+  
+  <div class="page-header">
+    <div class="header-text">
+      <h2>Manage Blogs (All Blogs)</h2>
+      <p>As an administrator, you can view, edit, or delete any blog on the platform.</p>
+    </div>
+    
+    <div class="search-box">
+      <input 
+        type="text" 
+        placeholder="Search by title or category..." 
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="onSearch()" 
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  @if (isLoading) {
+    <div class="spinner-container">
+      <div class="custom-spinner"></div>
+      <p>Fetching blogs from server...</p>
+    </div>
+  } @else {
+
+    <div class="table-responsive glass-card">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (blog of filteredBlogs; track blog.Id) {
+            <tr>
+              <td class="blog-id">#{{ blog.Id }}</td>
+              <td>
+                <div class="img-preview">
+                  <img [src]="blog.ImageUrl || 'assets/default-blog.png'" alt="Blog Image" />
+                </div>
+              </td>
+              <td class="blog-title">{{ blog.Title }}</td>
+              <td><span class="category-badge">{{ blog.CategoryName }}</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-action btn-edit" (click)="editBlog(blog.Id)">
+                    Edit
+                  </button>
+                  <button class="btn-action btn-delete" (click)="deleteBlog(blog.Id)">
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5" class="empty-row">
+                <p>No blogs match your search query.</p>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+  }
+</div>

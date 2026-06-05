@@ -1,0 +1,39 @@
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="user-profile">
+      <div class="avatar">A</div>
+      <div class="user-info">
+        <h3>Username</h3>
+        <span>Admin</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a routerLink="all-blogs" routerLinkActive="active">
+        <i class="bi bi-grid-fill"></i> All Blogs
+      </a>
+      <a routerLink="my-blogs" routerLinkActive="active">
+        <i class="bi bi-journal-text"></i> My Blogs
+      </a>
+      <a routerLink="categories" routerLinkActive="active">
+        <i class="bi bi-tags-fill"></i> Categories
+      </a>
+      <a routerLink="users" routerLinkActive="active">
+        <i class="bi bi-people-fill"></i> Users
+      </a>
+      <a routerLink="create-blog" routerLinkActive="active">
+        <i class="bi bi-plus-circle-fill"></i> Create Blog
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a routerLink="/home" class="back-btn">
+        <i class="bi bi-arrow-left-circle"></i> Back to Website
+      </a>
+    </div>
+  </aside>
+
+  <main class="dashboard-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
