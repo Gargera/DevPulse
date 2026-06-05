@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Blog } from '../../app/Models/Blog';
+import { Blog } from '../../app/Models/Blog/Blog';
 import { FormsModule } from '@angular/forms';
 import { BlogCard } from '../../app/Components/blog-card/blog-card';
-import { Category } from '../../app/Models/Category';
+import { Category } from '../../app/Models/Category/Category';
 
 @Component({
   selector: 'app-blogs',

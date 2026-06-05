@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { BlogCard } from '../blog-card/blog-card';
-import { Blog } from '../../Models/Blog';
+import { Blog } from '../../Models/Blog/Blog';
 
 @Component({
   selector: 'app-latest-blogs',

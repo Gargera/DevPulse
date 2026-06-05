@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output, OnInit} from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Blog } from '../../Models/Blog';
-import { IValidationResponse } from '../../Models/IValidationResponse';
-import { Category } from '../../Models/Category';
+import { Blog } from '../../Models/Blog/Blog';
+import { IValidationResponse } from '../../Models/Common/IValidationResponse';
+import { Category } from '../../Models/Category/Category';
 
 @Component({
   selector: 'app-create-blog',

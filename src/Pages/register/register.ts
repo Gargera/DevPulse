@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { UserRegister } from '../../app/Models/UserRegister';
+import { UserRegister } from '../../app/Models/Auth/UserRegister';
 import { passwordMatchValidator } from './password-match.validator';
-import { IValidationResponse } from '../../app/Models/IValidationResponse';
+import { IValidationResponse } from '../../app/Models/Common/IValidationResponse';
 
 @Component({
   selector: 'app-register',
