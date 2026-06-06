@@ -74,18 +74,21 @@ body {
   opacity: 0.22;
   pointer-events: none;
 }
+
 .blob-1 {
   width: 340px; height: 340px;
   background: var(--p3);
   top: -80px; right: -60px;
   animation: drift1 16s ease-in-out infinite alternate;
 }
+
 .blob-2 {
   width: 240px; height: 240px;
   background: var(--accent);
   bottom: -40px; left: -50px;
   animation: drift2 20s ease-in-out infinite alternate;
 }
+
 .blob-3 {
   width: 160px; height: 160px;
   background: var(--p1);
@@ -98,10 +101,12 @@ body {
   from { transform: translate(0,0) scale(1); }
   to   { transform: translate(-25px, 18px) scale(1.08); }
 }
+
 @keyframes drift2 {
   from { transform: translate(0,0) scale(1); }
   to   { transform: translate(20px, -12px) scale(1.06); }
 }
+
 @keyframes drift3 {
   from { transform: translate(-50%, -50%) scale(1); opacity: 0.12; }
   to   { transform: translate(-50%, -50%) scale(1.3); opacity: 0.06; }
@@ -145,7 +150,9 @@ body {
   gap: 7px;
   transition: opacity 0.2s;
 }
+
 .logo:hover { opacity: 0.8; }
+
 .logo-icon {
   width: 30px; height: 30px;
   background: linear-gradient(135deg, var(--p1), var(--accent));
@@ -162,6 +169,7 @@ body {
   text-align: center;
   letter-spacing: -0.3px;
 }
+
 .card-subtitle {
   font-size: 13px;
   color: var(--text-muted);
@@ -205,11 +213,14 @@ body {
 
 .input-icon {
   position: absolute;
-  left: 11px;
+  left: 14px;
+  font-size: 15px;
   color: var(--text-hint);
   pointer-events: none;
   transition: color 0.2s var(--ease), transform 0.2s var(--spring);
   z-index: 1;
+  display: flex;
+  align-items: center;
 }
 
 .auth-input {
@@ -228,19 +239,23 @@ body {
     background 0.2s var(--ease),
     transform 0.15s var(--ease);
 }
+
 .auth-input::placeholder {
   color: var(--text-hint);
   font-size: 13px;
 }
+
 .auth-input:hover {
   border-color: rgba(147, 51, 234, 0.35);
   background: rgba(255, 255, 255, 0.88);
 }
+
 .auth-input:focus {
   border-color: var(--p2);
   background: var(--white);
   box-shadow: 0 0 0 3.5px rgba(147, 51, 234, 0.12), 0 1px 3px rgba(0,0,0,0.04);
 }
+
 .input-wrapper:focus-within .input-icon {
   color: var(--p2);
   transform: scale(1.1);
@@ -259,9 +274,16 @@ body {
   border-radius: 5px;
   transition: color 0.2s, background 0.2s;
 }
+
 .toggle-password:hover {
   color: var(--p1);
   background: var(--p6);
+}
+
+.toggle-password i {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
 }
 
 .strength-bar {
@@ -269,6 +291,7 @@ body {
   gap: 4px;
   margin-top: 2px;
 }
+
 .strength-seg {
   flex: 1;
   height: 3px;
@@ -276,6 +299,7 @@ body {
   background: var(--border);
   transition: background 0.35s var(--ease);
 }
+
 .strength-seg.weak   { background: #f97316; }
 .strength-seg.fair   { background: #eab308; }
 .strength-seg.strong { background: #22c55e; }
@@ -307,6 +331,7 @@ body {
   overflow: hidden;
   letter-spacing: 0.01em;
 }
+
 .btn-primary::after {
   content: '';
   position: absolute;
@@ -315,14 +340,17 @@ body {
   transform: translateX(-100%);
   transition: transform 0.5s var(--ease);
 }
+
 .btn-primary:hover:not(:disabled)::after {
   transform: translateX(100%);
 }
+
 .btn-primary:hover:not(:disabled) {
   background-position: 100% 100%;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
 }
+
 .btn-primary:active:not(:disabled) {
   transform: translateY(0);
   box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
@@ -337,6 +365,7 @@ body {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+
 .divider::before, .divider::after {
   content: '';
   flex: 1;
@@ -349,6 +378,7 @@ body {
   color: var(--text-muted);
   text-align: center;
 }
+
 .switch-link a {
   color: var(--p1);
   font-weight: 600;
@@ -356,6 +386,7 @@ body {
   border-bottom: 1.5px solid transparent;
   transition: color 0.2s, border-color 0.2s;
 }
+
 .switch-link a:hover {
   color: var(--p-dark);
   border-bottom-color: var(--p3);
@@ -373,6 +404,7 @@ body {
   padding: 5px 10px;
   border-radius: var(--r-sm);
 }
+
 .back-home:hover {
   color: var(--p1);
   gap: 8px;
@@ -388,6 +420,7 @@ body {
   min-height: 16px;
   animation: errIn 0.2s var(--spring) both;
 }
+
 @keyframes errIn {
   from { opacity: 0; transform: translateY(-4px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -411,7 +444,6 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* === RESPONSIVE === */
 @media (max-width: 520px) {
   .auth-card { padding: 26px 18px 22px; }
   .field-row { grid-template-columns: 1fr; gap: 14px; }

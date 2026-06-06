@@ -5,10 +5,12 @@ import { UserRegister } from '../../../Core/Models/Auth/UserRegister';
 import { passwordMatchValidator } from './password-match.validator';
 import { IValidationResponse } from '../../../Core/Models/Common/IValidationResponse';
 import { AuthService } from '../../../Services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [RouterLink, ReactiveFormsModule],
+  standalone: true,
+  imports: [CommonModule, RouterLink, ReactiveFormsModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
@@ -20,9 +22,9 @@ export class Register {
 
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.registerForm = this.fb.group({
-      firstName: ['', Validators.required, Validators.minLength(2), Validators.maxLength(100)],
-      lastName: ['', Validators.required, Validators.minLength(2), Validators.maxLength(100)],
-      email: ['', [Validators.required, Validators.email]],
+      firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+      lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+      email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
       username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/)]],
       confirmPassword: ['', Validators.required]
@@ -36,10 +38,10 @@ export class Register {
   {
     const val = (event.target as HTMLInputElement).value;
     let score = 0;
-    if (val.length >= 8)          score++;
-    if (/[A-Z]/.test(val))        score++;
-    if (/[0-9]/.test(val))        score++;
-    if (/[^A-Za-z0-9]/.test(val)) score++;
+    if (val.length >= 8) score++;
+    if (/[A-Z]/.test(val)) score++;
+    if (/[0-9]/.test(val)) score++;
+    if (/[a-z]/.test(val)) score++;
     this.passwordStrength = score;
   }
 
@@ -107,7 +109,7 @@ export class Register {
 
     if (emailControl?.errors?.['required'])
       response.Message = "Email is required";
-    else if (emailControl?.errors?.['email'])
+    else if (emailControl?.errors?.['pattern'])
       response.Message = "Please enter a valid email address";
     else
       response.Success = true;
@@ -115,7 +117,7 @@ export class Register {
     return response;
   }
 
-  get usernameValid(): IValidationResponse
+  get usernameValid(): IValidationResponse 
   {
     let response: IValidationResponse = { Success: false, Message: "" };
     let usernameControl = this.registerForm.get('username');
@@ -132,7 +134,7 @@ export class Register {
     return response;
   }
 
-  get passwordValid(): IValidationResponse
+  get passwordValid(): IValidationResponse 
   {
     let response: IValidationResponse = { Success: false, Message: "" };
     let passwordControl = this.registerForm.get('password');
@@ -152,23 +154,23 @@ export class Register {
   }
 
   get confirmPasswordValid(): IValidationResponse
-  {
-    let response: IValidationResponse = { Success: false, Message: "" };
-    let confirmPasswordControl = this.registerForm.get('confirmPassword');
+{
+  let response: IValidationResponse = { Success: false, Message: "" };
+  let confirmPasswordControl = this.registerForm.get('confirmPassword');
 
-    if (!confirmPasswordControl?.touched) return response;
+  if (!confirmPasswordControl?.touched) return response;
 
-    if (confirmPasswordControl?.errors?.['required'])
-      response.Message = "Please confirm your password";
-    else if (this.registerForm.errors?.['passwordsMismatch'])
-      response.Message = "Passwords do not match";
-    else
-      response.Success = true;
+  if (confirmPasswordControl?.errors?.['required'])
+    response.Message = "Please confirm your password";
+  else if (this.registerForm.hasError('passwordMismatch'))
+    response.Message = "Passwords do not match";
+  else
+    response.Success = true;
 
-    return response;
-  }
+  return response;
+}
 
-  onSubmit() 
+  onSubmit(): void 
   {
     this.registerForm.markAllAsTouched();
 
@@ -180,7 +182,7 @@ export class Register {
         UserName: this.registerForm.value.username,
         Password: this.registerForm.value.password
       };
-      
+
       this.authService.register(user);
 
       this.router.navigate(['/auth/login']);
