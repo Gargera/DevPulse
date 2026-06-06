@@ -20,9 +20,12 @@ export class AuthService
   {
     const token = this.getToken();
     if (!token) return null;
-    try {
+    try 
+    {
       return jwtDecode<DecodedToken>(token);
-    } catch (error) {
+    } 
+    catch (error) 
+    {
       return null;
     }
   }
