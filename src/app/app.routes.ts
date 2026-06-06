@@ -16,25 +16,27 @@ import { Categories } from './Pages/dashboard-layout/categories/categories';
 import { ProfileLayout } from './Pages/main-layout/profile-layout/profile-layout';
 
 export const routes: Routes = [
+    {path: '', redirectTo: 'home', pathMatch: 'full' },
+    
     {path: '', component: MainLayoutComponent, children: [
-        {path: '', redirectTo: 'home', pathMatch: 'full' },
         {path: 'home', component: Home, title: 'DevPulse - Home'},
         {path: 'about', component: About, title: 'DevPulse - About'},
         {path: 'blogs', component: Blogs, title: 'DevPulse - Blogs'},
         {path: 'profile', component: ProfileLayout, title: 'DevPulse - Profile', children: [
+            {path: '', redirectTo: 'my-blogs', pathMatch: 'full'},
             {path: 'my-blogs', component: MyBlogs}
         ]},
         {path: 'blogs/:id', component: BlogDetails, title: "DevPulse - BlogDetails"}
     ]},
     {path: 'admin', component: DashboardLayoutComponent, title: 'DevPulse - Dashboard', children: [
-        {path:'', component: Users},
+        { path: '', redirectTo: 'users', pathMatch: 'full' },
         {path: 'all-blogs', component: AllBlogs},
         {path: 'my-blogs', component: MyBlogs},
         {path: 'categories', component: Categories},
         {path: 'users', component: Users}
     ]},
     {path: 'auth', component: AuthLayoutComponent, children: [
-        {path: '', component: Login, title: 'DevPulse - Login'},
+        { path: '', redirectTo: 'login', pathMatch: 'full' },
         {path: 'login', component: Login, title: 'DevPulse - Login'},
         {path: 'register', component: Register, title: 'DevPulse - Register'}
     ]},

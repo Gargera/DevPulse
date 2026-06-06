@@ -1,39 +1,30 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+:host {
+  --p1: #7c3aed;
+  --p2: #9333ea;
+  --p3: #a855f7;
+  --p4: #c084fc;
+  --p5: #e9d5ff;
+  --p6: #f3e8ff;
+  --p7: #faf5ff;
+  --p-dark: #4c1d95;
+  --p-darker: #6b21a8;
+  --accent: #d946ef;
+  --text-main: #1e1b4b;
+  --text-mid: #6b21a8;
+  --text-muted: #7c6fa0;
+  --text-hint: #a78bca;
+  --border: #e4d4f4;
+  --white: #ffffff;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --error: #dc2626;
 
-:root {
-  --purple-primary:   #7c3aed;
-  --purple-mid:       #9333ea;
-  --purple-light:     #a855f7;
-  --purple-dark:      #4c1d95;
-  --purple-darker:    #6b21a8;
-  --bg-light:         #faf5ff;
-  --bg-soft:          #f3eaff;
-  --border:           #d4b8f5;
-  --border-mid:       #c084fc;
-  --text-dark:        #4c1d95;
-  --text-mid:         #6b21a8;
-  --text-accent:      #7c3aed;
-  --text-muted:       #6b7280;
-  --white:            #ffffff;
-  --radius-sm:        8px;
-  --radius-md:        12px;
-  --radius-pill:      999px;
-  --transition:       0.2s ease;
-}
-
-body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background: var(--bg-light);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-dark);
-  overflow: hidden;
+  display: block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  direction: ltr;
 }
 
 .page-wrapper {
@@ -45,6 +36,7 @@ body {
   justify-content: center;
   padding: 24px 16px;
   overflow: hidden;
+  background: var(--p7);
 }
 
 .blob {
@@ -54,37 +46,48 @@ body {
   opacity: 0.28;
   pointer-events: none;
 }
+
 .blob-1 {
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, #c084fc, #7c3aed);
-  top: -180px; left: -150px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--p4), var(--p1));
+  top: -180px;
+  left: -150px;
   animation: drift1 16s ease-in-out infinite alternate;
 }
+
 .blob-2 {
-  width: 350px; height: 350px;
-  background: radial-gradient(circle, #a855f7, #4c1d95);
-  bottom: -120px; right: -100px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, var(--p3), var(--p-dark));
+  bottom: -120px;
+  right: -100px;
   animation: drift2 20s ease-in-out infinite alternate;
 }
+
 .blob-3 {
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, #d8b4fe, #9333ea);
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--p5), var(--p2));
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   animation: drift3 10s ease-in-out infinite alternate;
 }
 
 @keyframes drift1 {
-  from { transform: translate(0,0); }
+  from { transform: translate(0, 0); }
   to   { transform: translate(50px, 40px); }
 }
+
 @keyframes drift2 {
-  from { transform: translate(0,0); }
+  from { transform: translate(0, 0); }
   to   { transform: translate(-40px, -30px); }
 }
+
 @keyframes drift3 {
-  from { transform: translate(-50%,-50%) scale(1); }
-  to   { transform: translate(-50%,-50%) scale(1.5); }
+  from { transform: translate(-50%, -50%) scale(1); }
+  to   { transform: translate(-50%, -50%) scale(1.5); }
 }
 
 .nf-container {
@@ -94,7 +97,7 @@ body {
   align-items: center;
   gap: 40px;
   text-align: center;
-  animation: fadeUp 0.5s ease both;
+  animation: fadeUp 0.5s var(--ease) both;
 }
 
 @keyframes fadeUp {
@@ -123,7 +126,7 @@ body {
   font-size: 120px;
   font-weight: 900;
   line-height: 1;
-  background: linear-gradient(135deg, var(--purple-primary), var(--purple-light));
+  background: linear-gradient(135deg, var(--p1), var(--p3));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -147,7 +150,7 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--purple-primary), var(--purple-mid));
+  background: linear-gradient(135deg, var(--p1), var(--p2));
   padding: 10px;
   box-shadow: 0 8px 32px rgba(124, 58, 237, 0.35);
 }
@@ -156,7 +159,7 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: var(--bg-light);
+  background: var(--p7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,11 +172,12 @@ body {
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-10px); }
+  50%      { transform: translateY(-10px); }
 }
+
 @keyframes floatMid {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%       { transform: translateY(-8px) rotate(5deg); }
+  50%      { transform: translateY(-8px) rotate(5deg); }
 }
 
 .particles {
@@ -185,17 +189,16 @@ body {
 .particle {
   position: absolute;
   border-radius: 50%;
-  background: var(--purple-light);
   opacity: 0;
   animation: particlePop 4s ease-in-out infinite;
 }
 
-.p1 { width:8px;  height:8px;  top:10%;  left:8%;  animation-delay:0s;    background:#a855f7; }
-.p2 { width:6px;  height:6px;  top:70%;  left:5%;  animation-delay:0.8s;  background:#c084fc; }
-.p3 { width:10px; height:10px; top:20%;  right:6%; animation-delay:1.4s;  background:#7c3aed; }
-.p4 { width:5px;  height:5px;  top:80%;  right:8%; animation-delay:2s;    background:#9333ea; }
-.p5 { width:7px;  height:7px;  top:5%;   left:45%; animation-delay:0.4s;  background:#d8b4fe; }
-.p6 { width:9px;  height:9px;  top:90%;  left:50%; animation-delay:1.8s;  background:#a855f7; }
+.p1 { width: 8px;  height: 8px;  top: 10%;  left: 8%;  animation-delay: 0s;    background: var(--p3); }
+.p2 { width: 6px;  height: 6px;  top: 70%;  left: 5%;  animation-delay: 0.8s;  background: var(--p4); }
+.p3 { width: 10px; height: 10px; top: 20%;  right: 6%; animation-delay: 1.4s;  background: var(--p1); }
+.p4 { width: 5px;  height: 5px;  top: 80%;  right: 8%; animation-delay: 2s;    background: var(--p2); }
+.p5 { width: 7px;  height: 7px;  top: 5%;   left: 45%; animation-delay: 0.4s;  background: var(--p5); }
+.p6 { width: 9px;  height: 9px;  top: 90%;  left: 50%; animation-delay: 1.8s;  background: var(--p3); }
 
 @keyframes particlePop {
   0%        { opacity: 0; transform: scale(0) translateY(0); }
@@ -215,17 +218,20 @@ body {
 .logo {
   font-size: 22px;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--text-main);
   text-decoration: none;
   letter-spacing: -0.5px;
   margin-bottom: 4px;
 }
-.logo span { color: var(--purple-primary); }
+
+.logo span { 
+  color: var(--p1); 
+}
 
 .nf-title {
   font-size: 26px;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--text-main);
   line-height: 1.2;
 }
 
@@ -253,19 +259,23 @@ body {
   font-size: 14px;
   font-weight: 600;
   color: var(--white);
-  background: linear-gradient(135deg, var(--purple-primary), var(--purple-mid));
+  background: linear-gradient(135deg, var(--p1), var(--p2));
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: var(--r-sm);
   text-decoration: none;
   cursor: pointer;
   transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
 }
+
 .btn-signup:hover {
   opacity: 0.9;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(124, 58, 237, 0.3);
 }
-.btn-signup:active { transform: translateY(0); }
+
+.btn-signup:active { 
+  transform: translateY(0); 
+}
 
 .btn-outline {
   display: inline-flex;
@@ -274,20 +284,24 @@ body {
   padding: 10px 22px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--purple-primary);
+  color: var(--p1);
   background: transparent;
-  border: 1.5px solid var(--border-mid);
-  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--p4);
+  border-radius: var(--r-sm);
   text-decoration: none;
   cursor: pointer;
   transition: background var(--transition), border-color var(--transition), transform var(--transition);
 }
+
 .btn-outline:hover {
-  background: var(--hover-bg);
-  border-color: var(--purple-primary);
+  background: var(--p6);
+  border-color: var(--p1);
   transform: translateY(-2px);
 }
-.btn-outline:active { transform: translateY(0); }
+
+.btn-outline:active { 
+  transform: translateY(0); 
+}
 
 @media (max-width: 480px) {
   .illustration-wrap { width: 300px; }

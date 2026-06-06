@@ -12,8 +12,8 @@ export class Nav implements OnInit{
   private authService = Inject(AuthService);
   private router = Inject(Router);
 
-  isUserLoggedIn: boolean = false;
-  isUserAdmin: boolean = false;
+  isUserLoggedIn: boolean = true;
+  isUserAdmin: boolean = true;
 
   ngOnInit(): void 
   {

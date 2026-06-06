@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output, OnInit} from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Blog } from '../../Core/Models/Blog/Blog';
 import { IValidationResponse } from '../../Core/Models/Common/IValidationResponse';
 import { Category } from '../../Core/Models/Category/Category';
 

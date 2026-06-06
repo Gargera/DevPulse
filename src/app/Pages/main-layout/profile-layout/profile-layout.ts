@@ -1,11 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
-import { MyBlogs } from "../../../Components/my-blogs/my-blogs";
+import { RouterModule, RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-profile-layout',
-  imports: [FormsModule, MyBlogs],
+  imports: [FormsModule, RouterModule, RouterOutlet],
   templateUrl: './profile-layout.html',
   styleUrl: './profile-layout.css',
 })
