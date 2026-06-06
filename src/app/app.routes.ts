@@ -14,6 +14,7 @@ import { AllBlogs } from './Pages/dashboard-layout/all-blogs/all-blogs';
 import { MyBlogs } from './Components/my-blogs/my-blogs';
 import { Categories } from './Pages/dashboard-layout/categories/categories';
 import { ProfileLayout } from './Pages/main-layout/profile-layout/profile-layout';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,13 +23,13 @@ export const routes: Routes = [
         {path: 'home', component: Home, title: 'DevPulse - Home'},
         {path: 'about', component: About, title: 'DevPulse - About'},
         {path: 'blogs', component: Blogs, title: 'DevPulse - Blogs'},
-        {path: 'profile', component: ProfileLayout, title: 'DevPulse - Profile', children: [
+        {path: 'profile', component: ProfileLayout, title: 'DevPulse - Profile', canActivate: [authGuard], children: [
             {path: '', redirectTo: 'my-blogs', pathMatch: 'full'},
             {path: 'my-blogs', component: MyBlogs}
         ]},
         {path: 'blogs/:id', component: BlogDetails, title: "DevPulse - BlogDetails"}
     ]},
-    {path: 'admin', component: DashboardLayoutComponent, title: 'DevPulse - Dashboard', children: [
+    {path: 'admin', component: DashboardLayoutComponent, title: 'DevPulse - Dashboard', canActivate: [authGuard], children: [
         { path: '', redirectTo: 'users', pathMatch: 'full' },
         {path: 'all-blogs', component: AllBlogs},
         {path: 'my-blogs', component: MyBlogs},
