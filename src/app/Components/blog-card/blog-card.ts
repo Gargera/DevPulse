@@ -2,10 +2,11 @@ import { Component, Input} from '@angular/core';
 import { Blog } from '../../Core/Models/Blog/Blog';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CategoryColorDirective } from '../../directives/category-color';
 
 @Component({
   selector: 'app-blog-card',
-  imports: [CommonModule],
+  imports: [CommonModule, CategoryColorDirective],
   templateUrl: './blog-card.html',
   styleUrl: './blog-card.css',
 })
