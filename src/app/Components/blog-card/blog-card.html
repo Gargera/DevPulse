@@ -1,7 +1,12 @@
-<div class="blog-card">
+<div class="blog-card" (click)="goToDetails()">
+  
   <div class="blog-image-wrap">
-    @if(BlogData.ImageUrl) {
+    @if (BlogData.ImageUrl) {
       <img [src]="BlogData.ImageUrl" [alt]="BlogData.Title">
+    } @else {
+      <div class="image-placeholder">
+        <i class="bi bi-journal-code"></i>
+      </div>
     }
     <span class="category-badge">{{ BlogData.CategoryName }}</span>
   </div>
@@ -11,9 +16,21 @@
     <p class="blog-content">{{ BlogData.Content }}</p>
   </div>
 
+  <div class="blog-meta">
+    <div class="meta-item">
+      <i class="bi bi-person-circle"></i>
+      <span>{{ BlogData.UserName }}</span>
+    </div>
+    <div class="meta-item">
+      <i class="bi bi-calendar3"></i>
+      <span>{{ BlogData.CreatedAt | date:'mediumDate' }}</span>
+    </div>
+  </div>
+
   <div class="blog-footer">
-    <button class="btn-read-more" (click)="goToDetails()">
-      Read more 
+    <button class="btn-read-more">
+      Read More <i class="bi bi-arrow-right"></i>
     </button>
   </div>
+
 </div>
