@@ -11,6 +11,13 @@ import { Category } from '../../Core/Models/Category/Category';
   styleUrl: './create-blog.css',
 })
 export class CreateBlog implements OnInit {
+  blogModel = {
+      Title: '',
+      Content: '',
+      ImageUrl: null as string | null,
+      CategoryName: ''
+    };
+
   Id: number = 0;
   imagePreview: string | null = null;
   selectedImage: File | null = null;
@@ -145,15 +152,14 @@ export class CreateBlog implements OnInit {
     this.blogForm.markAllAsTouched();
 
     if (this.blogForm.valid) {
-      const BlogData: Blog = {
-                                Id: this.Id,
-                                ImageUrl: this.imagePreview,
-                                Title: this.blogForm.value.Title,
-                                Content: this.blogForm.value.Content,
-                                CategoryName: this.blogForm.value.Category
-                              };
+      this.blogModel = {
+                          ImageUrl: this.imagePreview,
+                          Title: this.blogForm.value.Title,
+                          Content: this.blogForm.value.Content,
+                          CategoryName: this.blogForm.value.Category
+                        };
 
-      this.CreateBlogEvent.emit(BlogData);
+      this.CreateBlogEvent.emit(this.blogModel);
 
       this.blogForm.reset();
       this.imagePreview = null;

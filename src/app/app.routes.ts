@@ -21,7 +21,9 @@ export const routes: Routes = [
         {path: 'home', component: Home, title: 'DevPulse - Home'},
         {path: 'about', component: About, title: 'DevPulse - About'},
         {path: 'blogs', component: Blogs, title: 'DevPulse - Blogs'},
-        {path: 'profile', component: ProfileLayout, title: 'DevPulse - Profile'},
+        {path: 'profile', component: ProfileLayout, title: 'DevPulse - Profile', children: [
+            {path: 'my-blogs', component: MyBlogs}
+        ]},
         {path: 'blogs/:id', component: BlogDetails, title: "DevPulse - BlogDetails"}
     ]},
     {path: 'admin', component: DashboardLayoutComponent, title: 'DevPulse - Dashboard', children: [

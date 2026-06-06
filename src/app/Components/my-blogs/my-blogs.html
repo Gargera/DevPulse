@@ -1,1 +1,49 @@
-<p>my-blogs works!</p>
+<div class="my-blogs-container">
+  
+  <div class="section-header">
+    @if (isDashboardMode) {
+      <h2>Dashboard - My Personal Blogs</h2>
+      <p>Manage, modify, or delete the blog posts you have written.</p>
+    } @else {
+      <h2>My Published Insights</h2>
+      <p>Here are all the articles you have contributed to the DevPulse community.</p>
+    }
+  </div>
+
+  @if (isLoading) {
+    <div class="spinner-container">
+      <div class="custom-spinner"></div>
+      <p>Loading your blogs...</p>
+    </div>
+  } @else {
+    
+    <div class="blogs-grid">
+      @for (blog of myBlogs; track blog.Id) {
+        <div class="blog-item-wrapper">
+          
+          <app-blog-card [BlogData]="blog"></app-blog-card>
+
+          @if (isDashboardMode) {
+            <div class="admin-actions-overlay">
+              <button class="btn-overlay-action btn-overlay-edit" [routerLink]="['/admin/edit-blog', blog.Id]">
+                <i class="bi bi-pencil-square"></i> Edit
+              </button>
+              <button class="btn-overlay-action btn-overlay-delete" (click)="deleteBlog(blog.Id, $event)">
+                <i class="bi bi-trash3-fill"></i> Delete
+              </button>
+            </div>
+          }
+
+        </div>
+      } @empty {
+        <div class="empty-state-box">
+          <i class="bi bi-journal-x"></i>
+          <p>You haven't written any blogs yet.</p>
+          @if (isDashboardMode) {
+            <button class="btn-create-first" routerLink="/admin/create-blog">Create Your First Blog</button>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>
