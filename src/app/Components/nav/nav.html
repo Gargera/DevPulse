@@ -2,13 +2,27 @@
     <a routerLink="/home" class="nav-logo">Dev<span>Pulse</span></a>
 
     <ul class="nav-links">
-        <li><a class="active" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
-        <li><a class="active" routerLink="/about" routerLinkActive="active">About</a></li>
-        <li><a class="active" routerLink="/blogs" routerLinkActive="active">Blogs</a></li>
+        <li><a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+        <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+        <li><a routerLink="/blogs" routerLinkActive="active">Blogs</a></li>
+        
+        @if (isUserLoggedIn) {
+            @if (isUserAdmin) {
+                <li><a routerLink="/admin" routerLinkActive="active">Dashboard</a></li>
+            } @else {
+                <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+            }
+        }
     </ul>
 
     <div class="nav-actions">
-        <a routerLink="/auth/login" class="btn-signin">Sign In</a>
-        <a routerLink="/auth/register" class="btn-signup">Sign Up</a>
+        @if (!isUserLoggedIn) {
+            <a routerLink="/auth/login" class="btn-signin">Sign In</a>
+            <a routerLink="/auth/register" class="btn-signup">Sign Up</a>
+        } @else {
+            <button (click)="onLogout()" class="btn-logout">
+                <i class="bi bi-box-arrow-right"></i> Log Out
+            </button>
+        }
     </div>
 </nav>
