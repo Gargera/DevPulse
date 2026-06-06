@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { AuthService } from '../../Services/auth.service';
 
@@ -8,7 +8,7 @@ import { AuthService } from '../../Services/auth.service';
   templateUrl: './nav.html',
   styleUrl: './nav.css',
 })
-export class Nav {
+export class Nav implements OnInit{
   private authService = Inject(AuthService);
   private router = Inject(Router);
 

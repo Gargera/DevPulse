@@ -9,15 +9,23 @@
     <div class="footer-col">
       <h4>Navigate</h4>
       <ul>
-        <li><a class="active" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
-        <li><a class="active" routerLink="/about" routerLinkActive="active">About</a></li>
-        <li><a class="active" routerLink="/blogs" routerLinkActive="active">Blogs</a></li>
+        <li><a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+        <li><a routerLink="/blogs" routerLinkActive="active">Blogs</a></li>
+        
+        @if (isUserLoggedIn) {
+          @if (isUserAdmin) {
+            <li><a routerLink="/admin" routerLinkActive="active">Dashboard</a></li>
+          } @else {
+            <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+          }
+        }
       </ul>
     </div>
 
   </div>
 
   <div class="footer-bottom">
-    <span>© 2026 DevPulse. All rights reserved.</span>
+    <span>&copy; 2026 DevPulse. All rights reserved.</span>
   </div>
 </footer>
