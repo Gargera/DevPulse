@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, OnInit} from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IValidationResponse } from '../../Core/Models/Common/IValidationResponse';
 import { Category } from '../../Core/Models/Category/Category';
+import { Blog } from '../../Core/Models/Blog/Blog';
 
 @Component({
   selector: 'app-create-blog',
@@ -158,9 +159,23 @@ export class CreateBlog implements OnInit {
                           CategoryName: this.blogForm.value.Category
                         };
 
-      this.CreateBlogEvent.emit(this.blogModel);
+      let blog: Blog = {
+                          Id: 0,
+                          ImageUrl: this.imagePreview,
+                          Title: this.blogForm.value.Title,
+                          Content: this.blogForm.value.Content,
+                          CategoryName: this.blogForm.value.Category,
+                          CreatedAt: new Date(),
+                          UserName: "EsraaTaha"
+                        }
 
-      this.blogForm.reset();
+      this.CreateBlogEvent.emit(blog);
+
+      this.blogForm.reset({
+                            Title: '',
+                            Content: '',
+                            Category: ''
+                          });
       this.imagePreview = null;
       this.selectedFileName = '';
     }

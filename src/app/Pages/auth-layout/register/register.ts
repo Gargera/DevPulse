@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { UserRegister } from '../../../Core/Models/Auth/UserRegister';
 import { passwordMatchValidator } from './password-match.validator';
 import { IValidationResponse } from '../../../Core/Models/Common/IValidationResponse';
+import { AuthService } from '../../../Services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class Register {
   showPassword = false;
   showConfirmPassword = false;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required, Validators.minLength(2), Validators.maxLength(100)],
       lastName: ['', Validators.required, Validators.minLength(2), Validators.maxLength(100)],
@@ -172,14 +173,16 @@ export class Register {
     this.registerForm.markAllAsTouched();
 
     if (this.registerForm.valid) {
-      const userRegister: UserRegister = {
+      const user: UserRegister = {
         FirstName: this.registerForm.value.firstName,
         LastName: this.registerForm.value.lastName,
         Email: this.registerForm.value.email,
         UserName: this.registerForm.value.username,
         Password: this.registerForm.value.password
       };
-      // Call API to register user
+      
+      this.authService.register(user);
+
       this.router.navigate(['/auth/login']);
       this.registerForm.reset();
     }

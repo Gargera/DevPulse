@@ -1,12 +1,12 @@
-import { Directive, ElementRef, Inject, Input, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, inject, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appCategoryColor]',
   standalone: true
 })
 export class CategoryColorDirective implements OnInit {
-  private el = Inject(ElementRef);
-  private renderer = Inject(Renderer2);
+  private el = inject(ElementRef);
+  private renderer = inject(Renderer2);
 
   @Input('appCategoryColor') categoryName!: string;
 
@@ -24,7 +24,6 @@ export class CategoryColorDirective implements OnInit {
     const charCode = firstChar.charCodeAt(0);
     const alphabetIndex = charCode - 97;
     let colorIndex = Math.floor(alphabetIndex / 2);
-
     const selectedColor = this.colors[colorIndex];
     this.renderer.setStyle(this.el.nativeElement, 'background-color', selectedColor);
     this.renderer.setStyle(this.el.nativeElement, 'color', '#ffffff');

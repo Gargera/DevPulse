@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Blog } from '../../../Core/Models/Blog/Blog';
 import { BlogService } from '../../../Services/blog.service';
@@ -10,7 +10,7 @@ import { BlogService } from '../../../Services/blog.service';
   styleUrl: './all-blogs.css',
 })
 export class AllBlogs implements OnInit {
-  private blogService = Inject(BlogService);
+  private blogService = inject(BlogService);
 
   blogs: Blog[] = [];
   filteredBlogs: Blog[] = [];

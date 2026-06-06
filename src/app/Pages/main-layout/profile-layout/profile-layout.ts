@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
 import { RouterModule, RouterOutlet } from "@angular/router";
@@ -10,6 +10,8 @@ import { RouterModule, RouterOutlet } from "@angular/router";
   styleUrl: './profile-layout.css',
 })
 export class ProfileLayout {
+  private authService = inject(AuthService);
+
   activeTab: string = 'blogs';
   isSaving: boolean = false;
 
@@ -19,8 +21,6 @@ export class ProfileLayout {
   fullName: string = this.firstName + ' ' + this.lastName;
   email: string = 'user@devpulse.com';
   roleName: string[] = ['User'];
-
-  private authService = Inject(AuthService);
 
   switchTab(tabName: string): void 
   {

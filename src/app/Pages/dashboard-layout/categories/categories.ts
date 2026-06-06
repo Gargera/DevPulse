@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Category } from '../../../Core/Models/Category/Category';
 import { CategoryService } from '../../../Services/category.service';
@@ -10,7 +10,7 @@ import { CategoryService } from '../../../Services/category.service';
   styleUrl: './categories.css',
 })
 export class Categories implements OnInit{
-  private categoryService = Inject(CategoryService);
+  private categoryService = inject(CategoryService);
 
   categories: Category[] = [
                               { Id: 1, Name: "AI" },

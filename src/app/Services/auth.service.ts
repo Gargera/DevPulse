@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { DecodedToken } from '../Core/Models/Auth/DecodedToken';
+import { UserRegister } from '../Core/Models/Auth/UserRegister';
+import { UserLogIn } from '../Core/Models/Auth/UserLogIn';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,22 @@ export class AuthService
   private tokenKey = 'token';
 
   constructor() {}
+
+  register(user: UserRegister) : void
+  {
+    //call api to register
+  }
+
+  logIn(user: UserLogIn): void
+  {
+    //call api to log in and get token
+    //localStorage.setItem('token', token);
+  }
+
+  logOut(): void
+  {
+    localStorage.removeItem('token');
+  }
 
   getToken(): string | null 
   {

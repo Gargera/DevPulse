@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { AuthService } from '../../Services/auth.service';
 
@@ -9,8 +9,8 @@ import { AuthService } from '../../Services/auth.service';
   styleUrl: './nav.css',
 })
 export class Nav implements OnInit{
-  private authService = Inject(AuthService);
-  private router = Inject(Router);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   isUserLoggedIn: boolean = true;
   isUserAdmin: boolean = true;
@@ -23,7 +23,7 @@ export class Nav implements OnInit{
 
   onLogout(): void 
   {
-    this.authService.logout();
+    this.authService.logOut();
     this.isUserLoggedIn = false;
     this.isUserAdmin = false;
     this.router.navigate(['/home']);

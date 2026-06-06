@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Blog } from '../../../Core/Models/Blog/Blog';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -10,12 +10,10 @@ import { Location } from '@angular/common';
   styleUrl: './blog-details.css',
 })
 export class BlogDetails implements OnInit {
+  private location = inject(Location);
+  private route = inject(ActivatedRoute);
+
   blog: Blog | null = null;
-
-  constructor(private location: Location, private route: ActivatedRoute)
-  {
-
-  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');

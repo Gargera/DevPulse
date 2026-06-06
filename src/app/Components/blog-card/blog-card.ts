@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, inject, Input} from '@angular/core';
 import { Blog } from '../../Core/Models/Blog/Blog';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -11,12 +11,9 @@ import { CategoryColorDirective } from '../../directives/category-color';
   styleUrl: './blog-card.css',
 })
 export class BlogCard {
+  private router = inject(Router)
+
   @Input() BlogData: Blog = {Id:0, ImageUrl:"", Title: "", Content: "", CategoryName: "", UserName: "", CreatedAt: new Date()};
-
-  constructor(private router: Router)
-  {
-
-  }
 
   goToDetails()
   {

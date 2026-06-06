@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject , OnInit } from '@angular/core';
+import { Component, inject , OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { BlogCard } from '../blog-card/blog-card';
 import { Blog } from '../../Core/Models/Blog/Blog';
@@ -12,8 +12,8 @@ import { BlogService } from '../../Services/blog.service';
   styleUrl: './my-blogs.css',
 })
 export class MyBlogs implements OnInit{
-  private blogService = Inject(BlogService);
-  private router = Inject(Router);
+  private blogService = inject(BlogService);
+  private router = inject(Router);
 
   myBlogs: Blog[] = [];
   isLoading: boolean = true;

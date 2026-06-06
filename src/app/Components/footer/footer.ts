@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
 
@@ -9,7 +9,7 @@ import { AuthService } from '../../Services/auth.service';
   styleUrl: './footer.css',
 })
 export class Footer implements OnInit{
-  private authService = Inject(AuthService);
+  private authService = inject(AuthService);
 
   isUserLoggedIn: boolean = false;
   isUserAdmin: boolean = false;

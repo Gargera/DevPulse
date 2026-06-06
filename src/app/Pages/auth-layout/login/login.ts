@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { IValidationResponse } from '../../../Core/Models/Common/IValidationResponse';
 import { UserLogIn } from '../../../Core/Models/Auth/UserLogIn';
+import { AuthService } from '../../../Services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class Login {
   showPassword = false;
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
@@ -60,12 +61,12 @@ export class Login {
       this.loginForm.markAllAsTouched();
   
       if (this.loginForm.valid) {
-        const userLogin: UserLogIn = {
+        const user: UserLogIn = {
           UserName: this.loginForm.value.username,
           Password: this.loginForm.value.password
         };
 
-        // Call API to login user
+        this.authService.logIn(user);
         
         this.router.navigate(['/home']);
         this.loginForm.reset();
