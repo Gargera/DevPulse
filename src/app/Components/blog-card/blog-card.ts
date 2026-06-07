@@ -2,7 +2,7 @@ import { Component, inject, Input} from '@angular/core';
 import { Blog } from '../../Core/Models/Blog/Blog';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { CategoryColorDirective } from '../../directives/category-color';
+import { CategoryColorDirective } from '../../Core/directives/category-color';
 
 @Component({
   selector: 'app-blog-card',

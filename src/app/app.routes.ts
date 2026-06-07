@@ -14,7 +14,8 @@ import { AllBlogs } from './Pages/dashboard-layout/all-blogs/all-blogs';
 import { MyBlogs } from './Components/my-blogs/my-blogs';
 import { Categories } from './Pages/dashboard-layout/categories/categories';
 import { ProfileLayout } from './Pages/main-layout/profile-layout/profile-layout';
-import { authGuard } from './guards/auth-guard';
+import { authGuard } from './Core/Guards/auth-guard'; 
+import { adminGuard } from './Core/Guards/admin-guard';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -29,15 +30,15 @@ export const routes: Routes = [
         ]},
         {path: 'blogs/:id', component: BlogDetails, title: "DevPulse - BlogDetails"}
     ]},
-    {path: 'admin', component: DashboardLayoutComponent, title: 'DevPulse - Dashboard', canActivate: [authGuard], children: [
-        { path: '', redirectTo: 'users', pathMatch: 'full' },
+    {path: 'admin', component: DashboardLayoutComponent, title: 'DevPulse - Dashboard', canActivate: [authGuard, adminGuard], children: [
+        {path: '', redirectTo: 'users', pathMatch: 'full' },
         {path: 'all-blogs', component: AllBlogs},
         {path: 'my-blogs', component: MyBlogs},
         {path: 'categories', component: Categories},
         {path: 'users', component: Users}
     ]},
     {path: 'auth', component: AuthLayoutComponent, children: [
-        { path: '', redirectTo: 'login', pathMatch: 'full' },
+        {path: '', redirectTo: 'login', pathMatch: 'full' },
         {path: 'login', component: Login, title: 'DevPulse - Login'},
         {path: 'register', component: Register, title: 'DevPulse - Register'}
     ]},
