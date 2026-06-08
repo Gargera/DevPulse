@@ -170,6 +170,20 @@
   height: 46px;
 }
 
+.forbidden-lock {
+  font-size: 2.3rem;
+  color: var(--p1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: lockPulse 2s ease-in-out infinite;
+}
+
+@keyframes lockPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); color: var(--error); }
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-10px); }

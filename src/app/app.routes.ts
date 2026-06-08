@@ -42,5 +42,6 @@ export const routes: Routes = [
         {path: 'login', component: Login, title: 'DevPulse - Login'},
         {path: 'register', component: Register, title: 'DevPulse - Register'}
     ]},
+    {path: '403', component: NotFound, title: "DevPulse - Forbidden"},
     {path: '**', component: NotFound, title: "DevPulse - NotFound"}
 ];

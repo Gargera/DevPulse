@@ -7,19 +7,23 @@
 
         <div class="illustration-wrap" aria-hidden="true">
             <div class="big-404">
-                <span class="four left">4</span>
+                <span class="four left">{{ statusCode.charAt(0) }}</span>
                 <div class="zero-wrap">
                     <div class="zero-outer">
                         <div class="zero-inner">
-                            <svg class="sad-face" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="20" cy="24" r="4" fill="#7c3aed" opacity="0.7" />
-                                <circle cx="40" cy="24" r="4" fill="#7c3aed" opacity="0.7" />
-                                <path d="M18 44 Q30 34 42 44" stroke="#7c3aed" stroke-width="3" stroke-linecap="round" fill="none" />
-                            </svg>
+                            @if (isForbidden) {
+                                <i class="bi bi-lock-fill forbidden-lock"></i>
+                            } @else {
+                                <svg class="sad-face" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="20" cy="24" r="4" fill="#7c3aed" opacity="0.7" />
+                                    <circle cx="40" cy="24" r="4" fill="#7c3aed" opacity="0.7" />
+                                    <path d="M18 44 Q30 34 42 44" stroke="#7c3aed" stroke-width="3" stroke-linecap="round" fill="none" />
+                                </svg>
+                            }
                         </div>
                     </div>
                 </div>
-                <span class="four right">4</span>
+                <span class="four right">{{ statusCode.charAt(2) }}</span>
             </div>
 
             <div class="particles">
@@ -34,20 +38,20 @@
 
         <div class="nf-content">
             <a routerLink="/home" class="logo">Dev<span>Pulse</span></a>
-            <h1 class="nf-title">Oops! Page Not Found</h1>
-            <p class="nf-subtitle">
-                Looks like this page took a coffee break and forgot to come back.
-            </p>
+            <h1 class="nf-title">{{ title }}</h1>
+            <p class="nf-subtitle">{{ subtitle }}</p>
 
             <div class="nf-actions">
                 <a routerLink="/home" class="btn-signup">
                     <i class="bi bi-house-door-fill"></i>
                     Back to Home
                 </a>
-                <a routerLink="/blogs" class="btn-outline">
-                    <i class="bi bi-book-half"></i>
-                    Browse Blogs
-                </a>
+                @if (!isForbidden) {
+                    <a routerLink="/blogs" class="btn-outline">
+                        <i class="bi bi-book-half"></i>
+                        Browse Blogs
+                    </a>
+                }
             </div>
         </div>
 
