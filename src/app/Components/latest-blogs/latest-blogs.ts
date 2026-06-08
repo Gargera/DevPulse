@@ -13,7 +13,7 @@ export class LatestBlogs implements OnChanges, OnInit{
   private blogService = inject(BlogService);
 
   Blogs: Blog[] = [];
-  @Input() parentBlogData: Blog = {Id: 0, ImageUrl: null, Title: "", Content: "", CategoryName: "", CreatedAt: new Date(), UserName: ""};
+  @Input() parentBlogData: Blog = {id:0, imageUrl:"", title: "", content: "", categoryName: "", userName: "", createdAt: new Date()};
 
   ngOnInit(): void {
     //this.Blogs = call api 

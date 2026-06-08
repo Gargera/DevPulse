@@ -160,13 +160,13 @@ export class CreateBlog implements OnInit {
                         };
 
       let blog: Blog = {
-                          Id: 0,
-                          ImageUrl: this.imagePreview,
-                          Title: this.blogForm.value.Title,
-                          Content: this.blogForm.value.Content,
-                          CategoryName: this.blogForm.value.Category,
-                          CreatedAt: new Date(),
-                          UserName: "EsraaTaha"
+                          id: 0,
+                          imageUrl: this.imagePreview,
+                          title: this.blogForm.value.Title,
+                          content: this.blogForm.value.Content,
+                          categoryName: this.blogForm.value.Category,
+                          createdAt: new Date(),
+                          userName: "EsraaTaha"
                         }
 
       this.CreateBlogEvent.emit(blog);

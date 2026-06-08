@@ -18,17 +18,17 @@
   } @else {
     
     <div class="blogs-grid">
-      @for (blog of myBlogs; track blog.Id) {
+      @for (blog of myBlogs; track blog.id) {
         <div class="blog-item-wrapper">
           
           <app-blog-card [BlogData]="blog"></app-blog-card>
 
           @if (isDashboardMode) {
             <div class="admin-actions-overlay">
-              <button class="btn-overlay-action btn-overlay-edit" [routerLink]="['/admin/edit-blog', blog.Id]">
+              <button class="btn-overlay-action btn-overlay-edit" [routerLink]="['/admin/edit-blog', blog.id]">
                 <i class="bi bi-pencil-square"></i> Edit
               </button>
-              <button class="btn-overlay-action btn-overlay-delete" (click)="deleteBlog(blog.Id, $event)">
+              <button class="btn-overlay-action btn-overlay-delete" (click)="deleteBlog(blog.id, $event)">
                 <i class="bi bi-trash3-fill"></i> Delete
               </button>
             </div>

@@ -13,10 +13,10 @@ import { CategoryColorDirective } from '../../Core/directives/category-color';
 export class BlogCard {
   private router = inject(Router)
 
-  @Input() BlogData: Blog = {Id:0, ImageUrl:"", Title: "", Content: "", CategoryName: "", UserName: "", CreatedAt: new Date()};
+  @Input() BlogData: Blog = {id:0, imageUrl:"", title: "", content: "", categoryName: "", userName: "", createdAt: new Date()};
 
   goToDetails()
   {
-    this.router.navigate(['/blogs', this.BlogData.Id]);
+    this.router.navigate(['/blogs', this.BlogData.id]);
   }
 }

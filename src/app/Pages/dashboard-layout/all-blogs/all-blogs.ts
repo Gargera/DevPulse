@@ -19,22 +19,22 @@ export class AllBlogs implements OnInit {
   isLoading: boolean = true;
 
   ngOnInit(): void {
-    this.loadAllBlogs();
+    // this.loadAllBlogs();
   }
 
-  loadAllBlogs(): void {
-    this.isLoading = true;
-    this.blogService.getBlogs().subscribe({
-      next: (data: Blog[]) => {
-        this.blogs = data;
-        this.filteredBlogs = data; 
-        this.isLoading = false;
-      },
-      error: (err: any) => {
-        this.isLoading = false;
-      }
-    });
-  }
+  // loadAllBlogs(): void {
+  //   this.isLoading = true;
+  //   this.blogService.getBlogs().subscribe({
+  //     next: (data: Blog[]) => {
+  //       this.blogs = data;
+  //       this.filteredBlogs = data; 
+  //       this.isLoading = false;
+  //     },
+  //     error: (err: any) => {
+  //       this.isLoading = false;
+  //     }
+  //   });
+  // }
 
   onSearch(): void {
     const query = this.searchQuery.toLowerCase().trim();
@@ -45,8 +45,8 @@ export class AllBlogs implements OnInit {
     }
 
     this.filteredBlogs = this.blogs.filter(blog => 
-      blog.Title.toLowerCase().includes(query) || 
-      blog.CategoryName.toLowerCase().includes(query)
+      blog.title.toLowerCase().includes(query) || 
+      blog.categoryName.toLowerCase().includes(query)
     );
   }
 
@@ -57,8 +57,8 @@ export class AllBlogs implements OnInit {
       this.blogService.deleteBlog(id).subscribe({
         next: () => {
           alert('Blog deleted successfully');
-          this.blogs = this.blogs.filter(b => b.Id !== id);
-          this.filteredBlogs = this.filteredBlogs.filter(b => b.Id !== id);
+          this.blogs = this.blogs.filter(b => b.id !== id);
+          this.filteredBlogs = this.filteredBlogs.filter(b => b.id !== id);
           this.isLoading = false;
         },
         error: (err : any) => {

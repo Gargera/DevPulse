@@ -1,29 +1,29 @@
 <div class="blog-card" (click)="goToDetails()">
   
   <div class="blog-image-wrap">
-    @if (BlogData.ImageUrl) {
-      <img [src]="BlogData.ImageUrl" [alt]="BlogData.Title">
+    @if (BlogData.imageUrl) {
+      <img [src]="BlogData.imageUrl" [alt]="BlogData.title">
     } @else {
       <div class="image-placeholder">
         <i class="bi bi-journal-code"></i>
       </div>
     }
-    <span class="category-badge" [appCategoryColor]="BlogData.CategoryName"> {{ BlogData.CategoryName }} </span>
+    <span class="category-badge" [appCategoryColor]="BlogData.categoryName"> {{ BlogData.categoryName }} </span>
   </div>
 
   <div class="blog-body">
-    <h3 class="blog-title">{{ BlogData.Title }}</h3>
-    <p class="blog-content">{{ BlogData.Content }}</p>
+    <h3 class="blog-title">{{ BlogData.title }}</h3>
+    <p class="blog-content">{{ BlogData.content }}</p>
   </div>
 
   <div class="blog-meta">
     <div class="meta-item">
       <i class="bi bi-person-circle"></i>
-      <span>{{ BlogData.UserName }}</span>
+      <span>{{ BlogData.userName }}</span>
     </div>
     <div class="meta-item">
       <i class="bi bi-calendar3"></i>
-      <span>{{ BlogData.CreatedAt | date:'mediumDate' }}</span>
+      <span>{{ BlogData.createdAt | date:'mediumDate' }}</span>
     </div>
   </div>
 

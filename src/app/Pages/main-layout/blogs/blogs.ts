@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Blog } from '../../../Core/Models/Blog/Blog';
 import { FormsModule } from '@angular/forms';
 import { BlogCard } from '../../../Components/blog-card/blog-card';
 import { Category } from '../../../Core/Models/Category/Category';
+import { BlogService } from '../../../Services/blog.service';
 
 @Component({
   selector: 'app-blogs',
@@ -10,7 +11,9 @@ import { Category } from '../../../Core/Models/Category/Category';
   templateUrl: './blogs.html',
   styleUrl: './blogs.css',
 })
-export class Blogs {
+export class Blogs implements OnInit{
+  private blogService = inject(BlogService);
+
   blogs: Blog[] = [];
   filteredBlogs: Blog[] = [];
   categories: Category[] = [];
@@ -18,10 +21,27 @@ export class Blogs {
   searchQuery = '';
   isLoading = false;
 
+  async ngOnInit(): Promise<void> {
+    await this.loadAllBlogs();
+  }
+
+  async loadAllBlogs(): Promise<void> {
+    try {
+      this.isLoading = true;
+      this.blogs = await this.blogService.getBlogs();
+      this.filteredBlogs = this.blogs;
+      console.log(this.blogs);
+    } catch (error: any) {
+      console.error('Fetch error:', error);
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
   onSearch() 
   {
     this.filteredBlogs = this.blogs.filter(b =>
-      b.Title.toLowerCase().includes(this.searchQuery.toLowerCase())
+      b.title.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
 

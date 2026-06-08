@@ -8,13 +8,18 @@ import { Blog } from '../Core/Models/Blog/Blog';
 })
 
 export class BlogService {
-  private apiUrl = 'https://localhost:5001/api/blog';
+  private apiUrl = 'https://localhost:7219/api/blog';
 
   constructor(private http: HttpClient) {}
 
-  getBlogs(): Observable<Blog[]> 
-  {
-    return this.http.get<Blog[]>(this.apiUrl);
+  async getBlogs(): Promise<Blog[]> {
+    const response = await fetch(this.apiUrl);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    return await response.json() as Blog[];
   }
 
   getBlogById(id: number): Observable<Blog> 

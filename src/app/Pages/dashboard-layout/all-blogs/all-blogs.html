@@ -36,22 +36,22 @@
           </tr>
         </thead>
         <tbody>
-          @for (blog of filteredBlogs; track blog.Id) {
+          @for (blog of filteredBlogs; track blog.id) {
             <tr>
-              <td class="blog-id">#{{ blog.Id }}</td>
+              <td class="blog-id">#{{ blog.id }}</td>
               <td>
                 <div class="img-preview">
-                  <img [src]="blog.ImageUrl || 'assets/default-blog.png'" alt="Blog Image" />
+                  <img [src]="blog.imageUrl || 'assets/default-blog.png'" alt="Blog Image" />
                 </div>
               </td>
-              <td class="blog-title">{{ blog.Title }}</td>
-              <td><span class="category-badge">{{ blog.CategoryName }}</span></td>
+              <td class="blog-title">{{ blog.title }}</td>
+              <td><span class="category-badge">{{ blog.categoryName }}</span></td>
               <td>
                 <div class="action-buttons">
-                  <button class="btn-action btn-edit" (click)="editBlog(blog.Id)">
+                  <button class="btn-action btn-edit" (click)="editBlog(blog.id)">
                     Edit
                   </button>
-                  <button class="btn-action btn-delete" (click)="deleteBlog(blog.Id)">
+                  <button class="btn-action btn-delete" (click)="deleteBlog(blog.id)">
                     Delete
                   </button>
                 </div>

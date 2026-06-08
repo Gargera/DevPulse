@@ -14,19 +14,19 @@
     <article class="details-card">
 
       <div class="details-meta">
-        <span class="category-badge">{{ blog.CategoryName }}</span>
+        <span class="category-badge">{{ blog.categoryName }}</span>
       </div>
 
-      <h1 class="details-title">{{ blog.Title }}</h1>
+      <h1 class="details-title">{{ blog.title }}</h1>
 
-      @if(blog.ImageUrl) {
+      @if(blog.imageUrl) {
         <div class="details-image-wrap">
-          <img [src]="blog.ImageUrl" [alt]="blog.Title" class="details-image" />
+          <img [src]="blog.imageUrl" [alt]="blog.title" class="details-image" />
         </div>
       }
 
       <div class="details-content">
-        <p>{{ blog.Content }}</p>
+        <p>{{ blog.content }}</p>
       </div>
 
     </article>
