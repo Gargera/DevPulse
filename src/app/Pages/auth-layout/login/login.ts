@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { IValidationResponse } from '../../../Core/Models/Common/IValidationResponse';
-import { UserLogIn } from '../../../Core/Models/Auth/UserLogIn';
 import { AuthService } from '../../../Services/auth.service';
 
 @Component({

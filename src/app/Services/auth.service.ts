@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { DecodedToken } from '../Core/Models/Auth/DecodedToken';
-import { UserRegister } from '../Core/Models/Auth/UserRegister';
-import { UserLogIn } from '../Core/Models/Auth/UserLogIn';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService 
 {
+  private accountApiUrl = environment.baseUrl + "/Account"; 
+  private adminApiUrl = environment.baseUrl + "/Admin"; 
   private tokenKey = 'token';
 
   constructor() {}
@@ -18,10 +19,20 @@ export class AuthService
     //call api to register
   }
 
+  update(user: FormData) : void
+  {
+    //call api to updateProfile
+  }
+
   logIn(user: FormData): void
   {
     //call api to log in and get token
     //localStorage.setItem('token', token);
+  }
+
+  getUsers() //: UserDto
+  {
+      
   }
 
   logOut(): void
