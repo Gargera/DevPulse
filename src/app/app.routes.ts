@@ -8,7 +8,7 @@ import { Login } from './Pages/auth-layout/login/login';
 import { Register } from './Pages/auth-layout/register/register';
 import { AuthLayoutComponent } from './Pages/auth-layout/auth-layout-component/auth-layout-component';
 import { Blogs } from './Pages/main-layout/blogs/blogs';
-import { BlogDetails } from './Pages/main-layout/blog-details/blog-details';
+import { BlogDetails } from './Components/blog-details/blog-details';
 import { DashboardLayoutComponent } from './Pages/dashboard-layout/dashboard-layout.component/dashboard-layout.component';
 import { AllBlogs } from './Pages/dashboard-layout/all-blogs/all-blogs';
 import { MyBlogs } from './Components/my-blogs/my-blogs';

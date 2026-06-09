@@ -1,0 +1,92 @@
+<div class="page-wrapper">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="auth-card">
+    <header class="card-header-actions">
+      <a routerLink="/my-blogs" class="back-link">
+        <i class="bi bi-arrow-left"></i> Back to My Blogs
+      </a>
+    </header>
+
+    <h1 class="card-title">Update Article</h1>
+    <p class="card-subtitle">Modify your article details and cover image</p>
+
+    @if (isLoading) 
+    {
+      <div class="status-container">
+        <div class="spinner"></div>
+        <p>Fetching article content...</p>
+      </div>
+    } 
+    @else if (errorMessage && !isSubmitting) 
+    {
+      <div class="status-container error-state">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <p>{{ errorMessage }}</p>
+        <a routerLink="/my-blogs" class="btn-primary">Return to List</a>
+      </div>
+    } 
+    @else 
+    {
+      <form class="auth-form" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+        
+        <div class="image-upload-container">
+          <div class="cover-preview-wrapper" [class.has-error]="imageError">
+            @if (imagePreview) {
+              <img [src]="imagePreview" class="cover-preview" alt="Cover Preview" />
+              <button type="button" class="btn-remove-cover" (click)="removeImage()" aria-label="Remove image">
+                <i class="bi bi-x-circle-fill"></i>
+              </button>
+            } 
+            @else 
+            {
+              <div class="cover-placeholder">
+                <i class="bi bi-image"></i>
+                <span>No cover image uploaded</span>
+              </div>
+            }
+          </div>
+          <label class="file-upload-label">
+            <i class="bi bi-cloud-upload"></i> {{ imagePreview ? 'Change Cover Image' : 'Upload Cover Image (Optional)' }}
+            <input type="file" accept="image/*" class="hidden-file-input" (change)="onFileSelected($event)" />
+          </label>
+          @if (imageError) 
+          {
+            <span class="error-message img-error-msg">{{ imageError }}</span>
+          }
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Article Title</label>
+          <div class="input-wrapper">
+            <i class="bi bi-type input-icon"></i>
+            <input type="text" class="auth-input" placeholder="Enter a catchy title" formControlName="title" />
+          </div>
+          <span class="error-message">{{ titleValid.Message }}</span>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Article Content</label>
+          <div class="input-wrapper textarea-wrapper">
+            <i class="bi bi-justify-left input-icon textarea-icon"></i>
+            <textarea class="auth-input auth-textarea" placeholder="Write your piece here..." formControlName="content" rows="8"></textarea>
+          </div>
+          <span class="error-message">{{ contentValid.Message }}</span>
+        </div>
+
+        @if (errorMessage) 
+        {
+          <div class="form-general-error">
+            <i class="bi bi-exclamation-circle-fill"></i> {{ errorMessage }}
+          </div>
+        }
+
+        <button type="submit" class="btn-primary" [disabled]="updateForm.invalid || !!imageError || isSubmitting">
+          {{ isSubmitting ? 'Saving Changes...' : 'Save Changes 🚀' }}
+        </button>
+
+      </form>
+    }
+  </div>
+</div>

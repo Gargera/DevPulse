@@ -12,10 +12,10 @@ import { Blog } from '../../Core/Models/Blog/Blog';
 })
 export class CreateBlog implements OnInit {
   blogModel = {
-      Title: '',
-      Content: '',
-      ImageUrl: null as string | null,
-      CategoryName: ''
+      title: '',
+      content: '',
+      image: null as File | null,
+      categoryName: ''
     };
 
   Id: number = 0;
@@ -27,10 +27,10 @@ export class CreateBlog implements OnInit {
   blogForm: FormGroup;
 
   categories: Category[] = [
-                              { Id: 1, Name: "AI" },
-                              { Id: 2, Name: "Mobile Development" },
-                              { Id: 3, Name: "Programming" },
-                              { Id: 4, Name: "Web Development" }
+                              { id: 1, name: "AI" },
+                              { id: 2, name: "Mobile Development" },
+                              { id: 3, name: "Programming" },
+                              { id: 4, name: "Web Development" }
                             ];
 
   @Output() CreateBlogEvent = new EventEmitter();
@@ -92,10 +92,10 @@ export class CreateBlog implements OnInit {
       this.imagePreview = reader.result as string;
     };
 
-    reader.readAsDataURL(file);
+    this.blogModel.image = file;
   }
 
-  get TitleValid() : IValidationResponse
+  get titleValid() : IValidationResponse
   {
     let response:  IValidationResponse = {Success: false, Message: ""};
     let title = this.blogForm.get('Title');
@@ -114,7 +114,7 @@ export class CreateBlog implements OnInit {
     return response
   }
 
-  get ContentValid() :  IValidationResponse
+  get contentValid() :  IValidationResponse
   {
     let response: IValidationResponse = {Success: false, Message: ""};
     let content = this.blogForm.get('Content');
@@ -152,13 +152,10 @@ export class CreateBlog implements OnInit {
     this.blogForm.markAllAsTouched();
 
     if (this.blogForm.valid) {
-      this.blogModel = {
-                          ImageUrl: this.imagePreview,
-                          Title: this.blogForm.value.Title,
-                          Content: this.blogForm.value.Content,
-                          CategoryName: this.blogForm.value.Category
-                        };
-
+      this.blogModel.title = this.blogForm.value.Title;
+      this.blogModel.content = this.blogForm.value.Content;
+      this.blogModel.categoryName = this.blogForm.value.Category;
+//call api to create blog
       let blog: Blog = {
                           id: 0,
                           imageUrl: this.imagePreview,

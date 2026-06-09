@@ -60,13 +60,14 @@ export class Login {
   {
       this.loginForm.markAllAsTouched();
   
-      if (this.loginForm.valid) {
-        const user: UserLogIn = {
-          UserName: this.loginForm.value.username,
-          Password: this.loginForm.value.password
-        };
+      if (this.loginForm.valid) 
+      {
+        const formData = new FormData();
+        
+        formData.append('userName', this.loginForm.value.username);
+        formData.append('password', this.loginForm.value.password);
 
-        this.authService.logIn(user);
+        this.authService.logIn(formData);
         
         this.router.navigate(['/home']);
         this.loginForm.reset();

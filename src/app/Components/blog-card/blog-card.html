@@ -2,7 +2,7 @@
   
   <div class="blog-image-wrap">
     @if (BlogData.imageUrl) {
-      <img [src]="BlogData.imageUrl" [alt]="BlogData.title">
+      <img [src]="domainUrl + BlogData.imageUrl" [alt]="BlogData.title">
     } @else {
       <div class="image-placeholder">
         <i class="bi bi-journal-code"></i>

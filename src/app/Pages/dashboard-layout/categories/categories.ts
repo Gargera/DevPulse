@@ -13,10 +13,10 @@ export class Categories implements OnInit{
   private categoryService = inject(CategoryService);
 
   categories: Category[] = [
-                              { Id: 1, Name: "AI" },
-                              { Id: 2, Name: "Mobile Development" },
-                              { Id: 3, Name: "Programming" },
-                              { Id: 4, Name: "Web Development" }
+                              { id: 1, name: "AI" },
+                              { id: 2, name: "Mobile Development" },
+                              { id: 3, name: "Programming" },
+                              { id: 4, name: "Web Development" }
                             ];
   isLoading: boolean = false;
   categoryName: string = '';

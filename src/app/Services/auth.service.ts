@@ -13,12 +13,12 @@ export class AuthService
 
   constructor() {}
 
-  register(user: UserRegister) : void
+  register(user: FormData) : void
   {
     //call api to register
   }
 
-  logIn(user: UserLogIn): void
+  logIn(user: FormData): void
   {
     //call api to log in and get token
     //localStorage.setItem('token', token);

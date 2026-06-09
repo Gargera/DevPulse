@@ -7,21 +7,21 @@
   <div class="form-group">
     <label>Title</label>
     <input type="text" placeholder="Enter blog title" formControlName="Title" />
-    <span class="error-message">{{TitleValid.Message}}</span>
+    <span class="error-message">{{titleValid.Message}}</span>
   </div>
 
   <div class="form-group">
     <label>Content</label>
     <textarea placeholder="Write your blog Content..." formControlName="Content"></textarea>
-    <span class="error-message">{{ContentValid.Message}}</span>
+    <span class="error-message">{{contentValid.Message}}</span>
   </div>
 
   <div class="form-group">
     <label>Category</label>
     <select formControlName="Category">
       <option value="">Select Category</option>
-      @for(category of categories; track category.Id) {
-        <option [value]="category.Name">{{ category.Name }}</option>
+      @for(category of categories; track category.id) {
+        <option [value]="category.name">{{ category.name }}</option>
       }
     </select>
     <span class="error-message">{{categoryValid.Message}}</span>

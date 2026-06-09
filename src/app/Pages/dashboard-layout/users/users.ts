@@ -8,7 +8,7 @@ import { UserDto } from '../../../Core/Models/Auth/UserDto';
   styleUrl: './users.css',
 })
 export class Users implements OnInit{
-  users: UserDto[] = [{Id: "0", FirstName: "Esraa", LastName: "Taha", UserName: "EsraaTaha", Email: "esraataha@gmail.com", Roles: ["Admin"]}];
+  users: UserDto[] = [{id: "0", firstName: "Esraa", lastName: "Taha", userName: "EsraaTaha", email: "esraataha@gmail.com", roles: ["Admin"]}];
   isLoading: boolean = false;
 
   ngOnInit(): void {

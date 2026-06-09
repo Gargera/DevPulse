@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { UserRegister } from '../../../Core/Models/Auth/UserRegister';
 import { passwordMatchValidator } from './password-match.validator';
 import { IValidationResponse } from '../../../Core/Models/Common/IValidationResponse';
 import { AuthService } from '../../../Services/auth.service';
@@ -19,6 +18,9 @@ export class Register {
   passwordStrength = 0;
   showPassword = false;
   showConfirmPassword = false;
+  selectedFile: File | null = null;
+  imagePreview: string | null = null;
+  imageError = '';
 
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.registerForm = this.fb.group({
@@ -27,26 +29,69 @@ export class Register {
       email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
       username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/)]],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
+      profileImage: [null]
     },
-      {
-        validators: passwordMatchValidator()
-      });
+    {
+      validators: passwordMatchValidator()
+    });
   }
 
-  updateStrength(event: Event): void 
-  {
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (!input.files?.length) return;
+
+    const file = input.files[0];
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+
+    if (!allowedTypes.includes(file.type)) {
+      this.imageError = 'Only JPG, PNG and WEBP are allowed';
+      this.selectedFile = null;
+      this.imagePreview = null;
+      this.registerForm.patchValue({ profileImage: null });
+      return;
+    }
+
+    const maxSize = 5 * 1024 * 1024;
+
+    if (file.size > maxSize) {
+      this.imageError = 'Image size must be less than 5 MB';
+      this.selectedFile = null;
+      this.imagePreview = null;
+      this.registerForm.patchValue({ profileImage: null });
+      return;
+    }
+
+    this.imageError = '';
+    this.selectedFile = file;
+    this.registerForm.patchValue({ profileImage: this.selectedFile });
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(this.selectedFile);
+  }
+
+  removeImage(): void {
+    this.selectedFile = null;
+    this.imagePreview = null;
+    this.imageError = '';
+    this.registerForm.patchValue({ profileImage: null });
+  }
+
+  updateStrength(event: Event): void {
     const val = (event.target as HTMLInputElement).value;
     let score = 0;
-    if (val.length >= 8) score++;
-    if (/[A-Z]/.test(val)) score++;
-    if (/[0-9]/.test(val)) score++;
-    if (/[a-z]/.test(val)) score++;
+    if (val.length >= 8)           score++;
+    if (/[A-Z]/.test(val))        score++;
+    if (/[0-9]/.test(val))        score++;
+    if (/[^A-Za-z0-9]/.test(val)) score++;
     this.passwordStrength = score;
   }
 
-  getSegClass(seg: number): string 
-  {
+  getSegClass(seg: number): string {
     if (this.passwordStrength === 0) return '';
     if (seg > this.passwordStrength) return '';
     if (this.passwordStrength === 1) return 'weak';
@@ -54,16 +99,14 @@ export class Register {
     return 'strong';
   }
 
-  togglePassword(field: 'password' | 'confirmPassword'): void 
-  {
+  togglePassword(field: 'password' | 'confirmPassword'): void {
     if (field === 'password')
       this.showPassword = !this.showPassword;
     else
       this.showConfirmPassword = !this.showConfirmPassword;
   }
 
-  get firstNameValid(): IValidationResponse 
-  {
+  get firstNameValid(): IValidationResponse {
     let response: IValidationResponse = { Success: false, Message: "" };
     let firstNameControl = this.registerForm.get('firstName');
 
@@ -81,8 +124,7 @@ export class Register {
     return response;
   }
 
-  get lastNameValid(): IValidationResponse 
-  {
+  get lastNameValid(): IValidationResponse {
     let response: IValidationResponse = { Success: false, Message: "" };
     let lastNameControl = this.registerForm.get('lastName');
 
@@ -100,8 +142,7 @@ export class Register {
     return response;
   }
 
-  get emailValid(): IValidationResponse 
-  {
+  get emailValid(): IValidationResponse {
     let response: IValidationResponse = { Success: false, Message: "" };
     let emailControl = this.registerForm.get('email');
 
@@ -117,8 +158,7 @@ export class Register {
     return response;
   }
 
-  get usernameValid(): IValidationResponse 
-  {
+  get usernameValid(): IValidationResponse {
     let response: IValidationResponse = { Success: false, Message: "" };
     let usernameControl = this.registerForm.get('username');
 
@@ -134,8 +174,7 @@ export class Register {
     return response;
   }
 
-  get passwordValid(): IValidationResponse 
-  {
+  get passwordValid(): IValidationResponse {
     let response: IValidationResponse = { Success: false, Message: "" };
     let passwordControl = this.registerForm.get('password');
 
@@ -153,40 +192,43 @@ export class Register {
     return response;
   }
 
-  get confirmPasswordValid(): IValidationResponse
-{
-  let response: IValidationResponse = { Success: false, Message: "" };
-  let confirmPasswordControl = this.registerForm.get('confirmPassword');
+  get confirmPasswordValid(): IValidationResponse {
+    let response: IValidationResponse = { Success: false, Message: "" };
+    let confirmPasswordControl = this.registerForm.get('confirmPassword');
+    let passwordControl = this.registerForm.get('password');
 
-  if (!confirmPasswordControl?.touched) return response;
+    if (!confirmPasswordControl?.touched && !passwordControl?.touched) return response;
 
-  if (confirmPasswordControl?.errors?.['required'])
-    response.Message = "Please confirm your password";
-  else if (this.registerForm.hasError('passwordMismatch'))
-    response.Message = "Passwords do not match";
-  else
-    response.Success = true;
+    if (confirmPasswordControl?.errors?.['required'])
+      response.Message = "Please confirm your password";
+    else if (this.registerForm.hasError('passwordMismatch') && confirmPasswordControl?.touched)
+      response.Message = "Passwords do not match";
+    else
+      response.Success = true;
 
-  return response;
-}
+    return response;
+  }
 
-  onSubmit(): void 
-  {
+  onSubmit(): void {
     this.registerForm.markAllAsTouched();
 
-    if (this.registerForm.valid) {
-      const user: UserRegister = {
-        FirstName: this.registerForm.value.firstName,
-        LastName: this.registerForm.value.lastName,
-        Email: this.registerForm.value.email,
-        UserName: this.registerForm.value.username,
-        Password: this.registerForm.value.password
-      };
+    if (this.registerForm.valid && !this.imageError) {
+      const formData = new FormData();
+      formData.append('FirstName', this.registerForm.value.firstName);
+      formData.append('LastName', this.registerForm.value.lastName);
+      formData.append('Email', this.registerForm.value.email);
+      formData.append('UserName', this.registerForm.value.username);
+      formData.append('Password', this.registerForm.value.password);
+      
+      if (this.selectedFile) {
+        formData.append('ProfileImage', this.selectedFile);
+      }
 
-      this.authService.register(user);
+      this.authService.register(formData);
 
       this.router.navigate(['/auth/login']);
       this.registerForm.reset();
+      this.removeImage();
     }
   }
 }

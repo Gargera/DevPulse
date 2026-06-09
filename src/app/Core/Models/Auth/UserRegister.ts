@@ -1,8 +1,9 @@
 export interface UserRegister 
 {
-    FirstName: string;
-    LastName: string;
-    Email: string;
-    UserName: string;
-    Password: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    userName: string;
+    password: string;
+    Image: File;
 }

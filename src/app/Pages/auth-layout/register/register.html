@@ -16,6 +16,28 @@
 
     <form class="auth-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
+      <div class="image-upload-container">
+        <div class="avatar-preview-wrapper" [class.has-error]="imageError">
+          @if (imagePreview) {
+            <img [src]="imagePreview" class="avatar-preview" alt="Profile Preview" />
+            <button type="button" class="btn-remove-avatar" (click)="removeImage()" aria-label="Remove image">
+              <i class="bi bi-x-circle-fill"></i>
+            </button>
+          } @else {
+            <div class="avatar-placeholder">
+              <i class="bi bi-camera" [class.icon-error]="imageError"></i>
+            </div>
+          }
+        </div>
+        <label class="file-upload-label">
+          <i class="bi bi-cloud-upload"></i> {{ selectedFile ? 'Change Profile Picture' : 'Upload Profile Picture (Optional)' }}
+          <input type="file" accept="image/*" class="hidden-file-input" (change)="onFileSelected($event)" />
+        </label>
+        @if (imageError) {
+          <span class="error-message img-error-msg">{{ imageError }}</span>
+        }
+      </div>
+
       <div class="field-row">
 
         <div class="field-group">
@@ -95,7 +117,7 @@
         <span class="error-message">{{ confirmPasswordValid.Message }}</span>
       </div>
 
-      <button type="submit" class="btn-primary">
+      <button type="submit" class="btn-primary" [disabled]="!!imageError">
         Create Account 🚀
       </button>
 
